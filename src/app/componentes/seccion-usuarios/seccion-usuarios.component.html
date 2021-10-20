@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+
+    <main>
+        <div class="container py-4">
+            <header class="pb-3 mb-4 border-bottom">
+                <span class="fs-4">Usuarios</span>
+            </header>
+
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">{{tipoUsuarios}}</h1>
+                    <app-tabla-usuarios (seSeleccionoAdministrador)="mostrarAdministrador($event)"
+                        (seSeleccionoPaciente)="mostrarPaciente($event)"
+                        (seSeleccionoEspecialista)="mostrarEspecialista($event)" [tipoUsuarios]="tipoUsuarios">
+                    </app-tabla-usuarios>
+                    <button class="btn btn-primary btn-md" (click)="cambiarTabla('Administradores')" type="button">Ver
+                        Administradores</button>
+                    <button class="btn btn-primary btn-md" (click)="cambiarTabla('Especialistas')" type="button">Ver
+                        Especialistas</button>
+                    <button class="btn btn-primary btn-md" (click)="cambiarTabla('Pacientes')" type="button">Ver
+                        Pacientes</button>
+                </div>
+            </div>
+
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>Detalle Usuario Seleccionado</h2>
+                        <app-detalle-usuario [administrador]="administrador" [paciente]="paciente"
+                            [especialista]="especialista"></app-detalle-usuario>
+                        <br>
+                        <button class="btn btn-outline-secondary" (click)="limpiar()" type="button">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="h-100 p-5 bg-light border rounded-3">
+                        <h2>Agregar Usuario</h2>
+                        <app-registration></app-registration>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>

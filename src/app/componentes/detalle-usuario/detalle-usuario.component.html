@@ -1,0 +1,67 @@
+<div *ngIf="administrador">
+    <span>Nombre: {{administrador.nombre}}</span>
+    <br>
+    <span>Apellido: {{administrador.apellido}}</span>
+    <br>
+    <span>DNI: {{administrador.dni}}</span>
+    <br>
+    <span>Edad: {{administrador.edad}}</span>
+    <br>
+    <span>Email: {{administrador.mail}}</span>
+    <br>
+    <span>Password: {{administrador.password}}</span>
+    <br>
+    <label>Foto Perfil</label>
+    <br>
+    <img [src]="administrador.fotoUrl" alt="">
+</div>
+<div *ngIf="especialista">
+    <span>Nombre: {{especialista.nombre}}</span>
+    <br>
+    <span>Apellido: {{especialista.apellido}}</span>
+    <br>
+    <span>DNI: {{especialista.dni}}</span>
+    <br>
+    <span>Edad: {{especialista.edad}}</span>
+    <br>
+    <span>Especialidades:
+        <ul class="list-group mb-3 text-muted">
+            <li class=" d-flex justify-content-between lh-condensed "
+                *ngFor="let especialidad of especialista.especialidades">
+                <span>{{especialidad.nombre}}</span>
+            </li>
+        </ul>
+    </span>
+    <span>Habilitado: {{especialista.habilitado | respuestaBooleano}}</span>
+    <br>
+    <span>Email: {{especialista.mail}}</span>
+    <br>
+    <span>Password: {{especialista.password}}</span>
+    <br>
+    <label>Foto Perfil</label>
+    <br>
+    <img [src]="especialista.fotoUrl" alt="">
+</div>
+<div *ngIf="paciente">
+    <span>Nombre: {{paciente.nombre}}</span>
+    <br>
+    <span>Apellido: {{paciente.apellido}}</span>
+    <br>
+    <span>DNI: {{paciente.dni}}</span>
+    <br>
+    <span>edad: {{paciente.edad}}</span>
+    <br>
+    <span>Obra Social: {{paciente.obraSocial}}</span>
+    <br>
+    <span>Email: {{paciente.mail}}</span>
+    <br>
+    <span>Password: {{paciente.password}}</span>
+    <br>
+    <label>Foto Perfil 1</label>
+    <br>
+    <img [src]="paciente.foto1Url" alt="">
+    <br>
+    <label>Foto Perfil 2</label>
+    <br>
+    <img [src]="paciente.foto2Url" alt="">
+</div>

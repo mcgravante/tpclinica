@@ -1,0 +1,62 @@
+<div class="table-responsive">
+    <table *ngIf="tipoUsuarios=='Administradores'" class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Edad</th>
+            </tr>
+        </thead>
+        <tbody (click)="SeleccionarAdministrador(administrador)" *ngFor="let administrador of arrayAdministradores">
+            <tr>
+                <td>{{administrador.nombre}}</td>
+                <td>{{administrador.apellido}}</td>
+                <td>{{administrador.dni}}</td>
+                <td>{{administrador.edad}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="tipoUsuarios=='Especialistas'" class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Habilitado</th>
+
+            </tr>
+        </thead>
+        <tbody (click)="SeleccionarEspecialista(especialista)" *ngFor="let especialista of arrayEspecialistas">
+            <tr>
+                <td>{{especialista.nombre}}</td>
+                <td>{{especialista.apellido}}</td>
+                <td>{{especialista.dni}}</td>
+                <td>{{especialista.edad}}</td>
+                <td>
+                    <input type="checkbox" (change)="habilitarEspecialista(especialista,$event.target.checked)"
+                        [checked]="especialista.habilitado">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="tipoUsuarios=='Pacientes'" class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Edad</th>
+            </tr>
+        </thead>
+        <tbody (click)="SeleccionarPaciente(paciente)" *ngFor="let paciente of arrayPacientes">
+            <tr>
+                <td>{{paciente.nombre}}</td>
+                <td>{{paciente.apellido}}</td>
+                <td>{{paciente.dni}}</td>
+                <td>{{paciente.edad}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

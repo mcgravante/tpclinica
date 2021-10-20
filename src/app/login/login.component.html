@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<body class="text-center">
+
+    <main class="form-signin">
+        <form>
+            <h1 class="h3 mb-3 fw-normal">¿Seguro quiere loguearse? OK...</h1>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                    [(ngModel)]='email' name='email'>
+                <label for="floatingInput">Email</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    [(ngModel)]='password' name='password'>
+                <label for="floatingPassword">Password</label>
+            </div>
+        </form>
+        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarAdmin()">Cargar datos
+            Administrador</button>
+        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarEspecialista()">Cargar datos
+            Especialista</button>
+        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarPaciente()">Cargar datos
+            Paciente</button>
+        <br><br>
+        <button class="btn btn-md btn-primary" type="submit" (click)="logInAdmin()">Ingresar como
+            Administrador</button>
+        <button class="btn btn-md btn-primary" type="submit" (click)="logInEspecialista()">Ingresar
+            como Especialista</button>
+        <button class="btn btn-md btn-primary" type="submit" (click)="logInPaciente()">Ingresar
+            como Paciente</button>
+        <br>
+        <br>
+
+        <a class="w-100 btn btn-sm btn-secondary" type="submit" href="/registro">Registrarse</a>
+
+    </main>
+
+
+
+</body>
+
+</html>

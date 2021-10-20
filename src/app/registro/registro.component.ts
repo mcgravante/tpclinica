@@ -9,21 +9,41 @@ import { AuthenticationService } from "../shared/authentication-service";
 })
 
 export class RegistroComponent implements OnInit {
+  regPaciente: boolean = false;
+  regEspecialista: boolean = false;
+  regAdministrador: boolean = false;
+  esAdmin: boolean = false;
+
 
   constructor(
     public authService: AuthenticationService,
     public router: Router
   ) { }
 
-  ngOnInit(){}
-
-  signUp(email, password){
-      this.authService.RegisterUser(email.value, password.value)      
-      .then((res) => {
-        // Do something here
-      }).catch((error) => {
-        window.alert(error.message)
-      })
+  ngOnInit() {
+    if (this.authService.isLoggedIn) {
+      let user: any = JSON.parse(localStorage.getItem('loggedUser'));
+      if (user.tipo == "administrador") {
+        this.esAdmin = true;
+      }
+    }
   }
 
+  registrarPaciente() {
+    this.regAdministrador = false;
+    this.regPaciente = true;
+    this.regEspecialista = false;
+  }
+
+  registrarAdministrador() {
+    this.regAdministrador = true;
+    this.regPaciente = false;
+    this.regEspecialista = false;
+  }
+
+  registrarEspecialista() {
+    this.regAdministrador = false;
+    this.regPaciente = false;
+    this.regEspecialista = true;
+  }
 }

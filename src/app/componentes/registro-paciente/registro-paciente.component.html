@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<body class="bg-light">
+    <div class="container">
+
+        <form [formGroup]="formAltaPaciente" (ngSubmit)="signUp()">
+            <!-- <div class="col-md-12 col-lg-12"> -->
+            <h4 class="mb-3">Alta Paciente</h4>
+            <div class="form-group">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('nombre')?.hasError('required') && formAltaPaciente.get('nombre')?.touched">Debe
+                            completar
+                            con su nombre.</span>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="firstName">Apellido</label>
+                        <input type="text" class="form-control" formControlName="apellido" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('apellido')?.hasError('required') && formAltaPaciente.get('apellido')?.touched">Debe
+                            completar
+                            con su apellido.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="dni">DNI</label>
+                        <input type="number" class="form-control" formControlName="dni" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('dni')?.hasError('required') && formAltaPaciente.get('dni')?.touched">Debe
+                            completar
+                            con su dni.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="edad">Edad</label>
+                        <input type="number" class="form-control" formControlName="edad" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('edad')?.hasError('required') && formAltaPaciente.get('edad')?.touched">Debe
+                            completar con su edad.</span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="obraSocial">Obra social </label>
+                    <input type="text" class="form-control" formControlName="obraSocial" placeholder="">
+                    <span class="text-danger"
+                        *ngIf="formAltaPaciente.get('obraSocial')?.hasError('required') && formAltaPaciente.get('obraSocial')?.touched">Debe
+                        completar con su obra social.</span>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="photo">Foto de perfil 1</label>
+                        <br>
+                        <input type="file" name="file" class="form-control" formControlName="foto1"
+                            (input)="onFileChanged($event,1)" accept=".jpeg,.jpg,.png,.svg" />
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('foto1')?.hasError('required') && formAltaPaciente.get('foto1')?.touched">Debe
+                            subir la primer foto de perfil.</span>
+                        <br />
+                        <img *ngIf="foto1Url" [src]="foto1Url">
+                        <br>
+                    </div>
+
+                    <div class="col">
+
+                        <label for="photo">Foto de perfil 2</label>
+                        <br>
+                        <input type="file" name="file" class="form-control" formControlName="foto2"
+                            (input)="onFileChanged($event,2)" accept=".jpeg,.jpg,.png,.svg" />
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('foto2')?.hasError('required') && formAltaPaciente.get('foto2')?.touched">Debe
+                            subir la segunda foto de perfil.</span>
+                        <br />
+                        <img *ngIf="foto2Url" [src]="foto2Url">
+                        <br>
+                    </div>
+
+                </div>
+
+                <div class="my-3">
+                    <div class="col-sm-6">
+                        <label for="mail">Mail</label>
+                        <input type="email" class="form-control" formControlName="mail" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('mail')?.hasError('required') && formAltaPaciente.get('mail')?.touched">Debe
+                            completar
+                            con su mail.</span>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" formControlName="password" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaPaciente.get('password')?.hasError('required') && formAltaPaciente.get('password')?.touched">Debe
+                            completar
+                            con su contraseña.</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" [disabled]="formAltaPaciente.invalid"
+                    type="submit">Cargar
+                    Paciente</button>
+            </div>
+            <!-- </div> -->
+        </form>
+
+    </div>
+
+</body>
+
+</html>

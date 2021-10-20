@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<body class="bg-light">
+    <div class="container">
+
+        <form [formGroup]="formAltaEspecialista" (ngSubmit)="signUp()">
+            <!-- <div class="col-md-12 col-lg-12"> -->
+            <h4 class="mb-3">Alta Especialista</h4>
+            <div class="form-group">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaEspecialista.get('nombre')?.hasError('required') && formAltaEspecialista.get('nombre')?.touched">Debe
+                            completar
+                            con su nombre.</span>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="firstName">Apellido</label>
+                        <input type="text" class="form-control" formControlName="apellido" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaEspecialista.get('apellido')?.hasError('required') && formAltaEspecialista.get('apellido')?.touched">Debe
+                            completar
+                            con su apellido.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="dni">DNI</label>
+                        <input type="number" class="form-control" formControlName="dni" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaEspecialista.get('dni')?.hasError('required') && formAltaEspecialista.get('dni')?.touched">Debe
+                            completar
+                            con su dni.</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="edad">Edad</label>
+                        <input type="number" class="form-control" formControlName="edad" placeholder="">
+                        <span class="text-danger"
+                            *ngIf="formAltaEspecialista.get('edad')?.hasError('required') && formAltaEspecialista.get('edad')?.touched">Debe
+                            completar con su edad.</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="especialidades">Especialidades</label>
+
+                        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="listaEspecialidades"
+                            formControlName="especialidades">
+                        </ng-multiselect-dropdown>
+                        <span class="text-danger"
+                            *ngIf="formAltaEspecialista.get('especialidades')?.hasError('required') && formAltaEspecialista.get('especialidades')?.touched">Debe
+                            seleccionar al menos una especialidad.</span>
+                        <br>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <br>
+                        <div *ngIf="agrEspecialidad">
+                            <input type="text" placeholder="" #nuevaEspecialidad>
+                            <button class="btn btn-sm btn-secondary" type="button"
+                                (click)="agregarNuevaEspecialidad(nuevaEspecialidad.value)">Agregar</button>
+                        </div>
+
+                        <button class="btn btn-sm btn-primary" type="button"
+                            (click)="activarAgregadoEspecialidad()">{{agrEspBtn}}</button>
+                    </div>
+                </div>
+
+                <div class="my-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="photo">Foto de perfil</label>
+                            <br>
+                            <input type="file" name="file" class="form-control" formControlName="foto"
+                                (input)="onFileChanged($event)" accept=".jpeg,.jpg,.png,.svg" />
+                            <span class="text-danger"
+                                *ngIf="formAltaEspecialista.get('foto')?.hasError('required') && formAltaEspecialista.get('foto')?.touched">Debe
+                                subir foto de perfil.</span>
+                            <br />
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <img *ngIf="fotoUrl" [src]="fotoUrl">
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <label for="mail">Mail</label>
+                            <input type="email" class="form-control" formControlName="mail" placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formAltaEspecialista.get('mail')?.hasError('required') && formAltaEspecialista.get('mail')?.touched">Debe
+                                completar
+                                con su mail.</span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" formControlName="password" placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formAltaEspecialista.get('password')?.hasError('required') && formAltaEspecialista.get('password')?.touched">Debe
+                                completar
+                                con su contraseña.</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block" [disabled]="formAltaEspecialista.invalid"
+                    type="submit">Cargar
+                    Especialista</button>
+            </div>
+        </form>
+
+
+    </div>
+
+</body>
+
+</html>
