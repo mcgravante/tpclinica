@@ -34,10 +34,15 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user));
         let user = this.administradorService.getAdministrador(this.email).subscribe((usuarios: any) => {
-          localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
-          NavBarComponent.updateUserStatus.next(true);
-          this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
-          this.router.navigate(['home']);
+          if (usuarios[0] == null) {
+            this.toastr.error('Su cuenta no está asociada a un usuario administrador', 'Login');
+          }
+          else {
+            localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
+            NavBarComponent.updateUserStatus.next(true);
+            this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
+            this.router.navigate(['home']);
+          }
           user.unsubscribe();
         });
 
@@ -50,19 +55,22 @@ export class LoginComponent implements OnInit {
     this.authService.SignIn(this.email, this.password)
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user));
-        if (res.user.emailVerified) {
-          let user = this.pacienteService.getPaciente(this.email).subscribe((usuarios: any) => {
-            localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
-            NavBarComponent.updateUserStatus.next(true);
-            this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
-            this.router.navigate(['home']);
-            user.unsubscribe();
-          });
-        } else {
-          this.toastr.error('No se ha verificado el email correctamente', 'Login');
-          this.router.navigate(['registro/verify-email']);
-          return false;
-        }
+        let user = this.pacienteService.getPaciente(this.email).subscribe((usuarios: any) => {
+          if (usuarios[0] == null) {
+            this.toastr.error('Su cuenta no está asociada a un usuario paciente', 'Login');
+          } else {
+            if (res.user.emailVerified) {
+              localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
+              NavBarComponent.updateUserStatus.next(true);
+              this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
+              this.router.navigate(['home']);
+            } else {
+              this.toastr.error('No se ha verificado el email correctamente', 'Login');
+              this.router.navigate(['registro/verify-email']);
+            }
+          }
+          user.unsubscribe();
+        });
       }).catch((error) => {
         this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
@@ -72,25 +80,29 @@ export class LoginComponent implements OnInit {
     this.authService.SignIn(this.email, this.password)
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user));
-        if (res.user.emailVerified) {
-          let user = this.especialistaService.getEspecialista(this.email).subscribe((usuarios: any) => {
-            let loggedUser = usuarios[0].payload.doc.data();
-            if (loggedUser.habilitado == true) {
-              localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-              NavBarComponent.updateUserStatus.next(true);
-              this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
+        let user = this.especialistaService.getEspecialista(this.email).subscribe((usuarios: any) => {
+          if (usuarios[0] == null) {
+            this.toastr.error('Su cuenta no está asociada a un usuario especialista', 'Login');
+          } else {
+            if (res.user.emailVerified) {
+              let loggedUser = usuarios[0].payload.doc.data();
+              if (loggedUser.habilitado == true) {
+                localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+                NavBarComponent.updateUserStatus.next(true);
+                this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
+                this.router.navigate(['home']);
+              } else {
+                localStorage.removeItem('user');
+                this.toastr.error('Su cuenta aún no se encuentra habilitada. Por favor, pónganse en contaco con su administrador', 'Login');
+              }
             } else {
-              localStorage.removeItem('user');
-              this.toastr.error('Su cuenta aún no se encuentra habilitada. Por favor, pónganse en contaco con su administrador', 'Login');
+              this.toastr.error('No se ha verificado el email correctamente', 'Login');
+              this.router.navigate(['registro/verify-email']);
             }
-            user.unsubscribe();
-            this.router.navigate(['home']);
-          });
-        } else {
-          this.toastr.error('No se ha verificado el email correctamente', 'Login');
-          this.router.navigate(['registro/verify-email']);
-          return false;
-        }
+          }
+          user.unsubscribe();
+        });
+
       }).catch((error) => {
         this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
