@@ -98,7 +98,7 @@ export class RegistroPacienteComponent implements OnInit {
       });
 
     } else {
-      alert('No images selected');
+      this.toastr.error('No seleccionó ninguna imagen');
       if (fotoNumber == 1) {
         this.foto1Url = '';
       }

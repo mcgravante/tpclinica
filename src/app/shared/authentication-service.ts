@@ -2,6 +2,8 @@ import { Injectable, NgZone } from '@angular/core';
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ export class AuthenticationService {
 
   constructor(
     public afStore: AngularFirestore,
+    public toastr: ToastrService,
     public ngFireAuth: AngularFireAuth,
     public router: Router,
     public ngZone: NgZone

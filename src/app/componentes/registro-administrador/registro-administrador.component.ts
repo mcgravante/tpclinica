@@ -85,7 +85,7 @@ export class RegistroAdministradorComponent implements OnInit {  formAltaAdminis
         this.fotoUrl = url;
       });
     } else {
-      alert('No images selected');
+      this.toastr.error('No seleccionó ninguna imagen');
       this.fotoUrl = '';
     }
   }

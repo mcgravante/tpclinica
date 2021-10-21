@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         });
 
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
   }
 
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
           return false;
         }
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
   }
 
@@ -77,13 +77,13 @@ export class LoginComponent implements OnInit {
             let loggedUser = usuarios[0].payload.doc.data();
             if (loggedUser.habilitado == true) {
               localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-              user.unsubscribe();
               NavBarComponent.updateUserStatus.next(true);
               this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
             } else {
               localStorage.removeItem('user');
               this.toastr.error('Su cuenta aún no se encuentra habilitada. Por favor, pónganse en contaco con su administrador', 'Login');
             }
+            user.unsubscribe();
             this.router.navigate(['home']);
           });
         } else {
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
           return false;
         }
       }).catch((error) => {
-        window.alert(error.message)
+        this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
   }
 
