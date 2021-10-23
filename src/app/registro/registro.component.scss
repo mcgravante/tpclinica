@@ -17,32 +17,36 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
-  font-family: 'Bangers', cursive;
   animation: rotation 20s infinite linear;
 
 }
 
 .btn {
   margin: 1%;
-  border-radius: 50%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
-  width: 400px;
 }
 
 .btn-paciente {
   background-image: url(../images/paciente.jpeg);
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  font-family: 'Bangers', cursive;
 }
 
 .btn-especialista {
   background-image: url(../images/especialista.jpeg);
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+  font-family: 'Bangers', cursive;
 }
 
 h1 {
   position:relative;
-  top: 100px;
+  top: 70px;
   color:rgb(0, 0, 0);
   z-index: 2;
   font-size:larger;
