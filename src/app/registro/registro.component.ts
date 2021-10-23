@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../shared/authentication-service";
 
@@ -13,6 +13,7 @@ export class RegistroComponent implements OnInit {
   regEspecialista: boolean = false;
   regAdministrador: boolean = false;
   esAdmin: boolean = false;
+  @Input() isUserPanel: boolean = false;
 
 
   constructor(

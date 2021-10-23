@@ -18,24 +18,34 @@
                 <label for="floatingPassword">Password</label>
             </div>
         </form>
-        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarAdmin()">Cargar datos
-            Administrador</button>
-        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarEspecialista()">Cargar datos
-            Especialista</button>
-        <button class="btn btn-sm btn-secondary" type="submit" (click)="cargarPaciente()">Cargar datos
-            Paciente</button>
-        <br><br>
-        <button class="btn btn-md btn-primary" type="submit" (click)="logInAdmin()">Ingresar como
-            Administrador</button>
-        <button class="btn btn-md btn-primary" type="submit" (click)="logInEspecialista()">Ingresar
-            como Especialista</button>
-        <button class="btn btn-md btn-primary" type="submit" (click)="logInPaciente()">Ingresar
-            como Paciente</button>
-        <br>
-        <br>
 
+        <button class="btn btn-md btn-primary" type="submit" (click)="logIn()">Ingresar</button>
+        <br>
+        <br>
         <a class="w-100 btn btn-sm btn-secondary" type="submit" href="/registro">Registrarse</a>
 
+        <div class="mat-fab-bottom-right">
+            <button mat-fab class="adminButton" (click)="cargarAdmin()">
+            </button>
+            <span>Administrador</span>
+            <button mat-fab class="espec1Button" (click)="cargarEspecialista1()">
+            </button>
+            <span>Especialista1</span>
+            <button mat-fab class="espec2Button" (click)="cargarEspecialista2()">
+            </button>
+            <span>Especialista2</span>
+            <button mat-fab class="pac1Button" (click)="cargarPaciente1()">
+            </button>
+            <span>Paciente1</span>
+            <button mat-fab class="pac2Button" (click)="cargarPaciente2()">
+            </button>
+            <span>Paciente2</span>
+            <button mat-fab class="pac3Button" (click)="cargarPaciente3()">
+            </button>
+            <span>Paciente3</span>
+
+
+        </div>
     </main>
 
 

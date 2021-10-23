@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<body class="d-flex h-100 text-center text-white bg-dark" scroll=none>
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <main class="px-3">
+            <br><br>
+            <h1>Bienvenide</h1>
+            <h2>Elija una opción, estoy seguro de que perderá..</h2>
+<br><br><br>
+            <p class="lead">
+                <a *ngIf="!isLogged" href="login" class="btn btn-lg btn-primary ">Ingresar</a>
+                <a href="registro" class="btn btn-lg btn-primary">Registro</a>
+                <a *ngIf="esAdmin" class="btn btn-lg btn-primary" href="seccion-usuarios">Sección Usuarios</a>
+
+            </p>
+        </main>
+
+    </div>
+</body>
+
+</html>

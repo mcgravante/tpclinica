@@ -1,13 +1,12 @@
 html,
 body {
-  height: 100%;
+  height: 91vh !important;
 }
 
 body {
   display: flex;
   align-items: center;
   padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #f5f5f5;
 }
 
@@ -39,4 +38,53 @@ body {
 }
 .btn {
   margin: 0.1%;
+}
+
+.mat-fab-bottom-right {
+  display:grid;
+  position: fixed !important;
+  right: 15px;
+  bottom: 15px;
+}
+
+.adminButton {
+  background-image: url(../images/admin.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.espec1Button {
+  background-image: url(../images/espec1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.espec2Button {
+  background-image: url(../images/espec2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pac1Button {
+  background-image: url(../images/pac1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pac2Button {
+  background-image: url(../images/pac2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.pac3Button {
+  background-image: url(../images/pac3.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

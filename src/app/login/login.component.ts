@@ -29,83 +29,76 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  logInAdmin() {
+  logIn() {
     this.authService.SignIn(this.email, this.password)
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user));
-        let user = this.administradorService.getAdministrador(this.email).subscribe((usuarios: any) => {
-          if (usuarios[0] == null) {
-            this.toastr.error('Su cuenta no está asociada a un usuario administrador', 'Login');
+        this.logInAdmin();
+        if (!this.userIsLogged()) {
+          this.logInEspecialista();
+          if (!this.userIsLogged()) {
+            this.logInPaciente();
           }
-          else {
-            localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
-            NavBarComponent.updateUserStatus.next(true);
-            this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
-            this.router.navigate(['home']);
-          }
-          user.unsubscribe();
-        });
-
+        }
       }).catch((error) => {
         this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
       })
+  }
+
+  logInAdmin() {
+    let user = this.administradorService.getAdministrador(this.email).subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        let loggedUser = usuarios[0].payload.doc.data();
+        localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+        NavBarComponent.updateUserStatus.next(true);
+        this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+        this.router.navigate(['home']);
+      }
+      user.unsubscribe();
+    });
   }
 
   logInPaciente() {
-    this.authService.SignIn(this.email, this.password)
-      .then((res) => {
-        localStorage.setItem('user', JSON.stringify(res.user));
-        let user = this.pacienteService.getPaciente(this.email).subscribe((usuarios: any) => {
-          if (usuarios[0] == null) {
-            this.toastr.error('Su cuenta no está asociada a un usuario paciente', 'Login');
-          } else {
-            if (res.user.emailVerified) {
-              localStorage.setItem('loggedUser', JSON.stringify(usuarios[0].payload.doc.data()));
-              NavBarComponent.updateUserStatus.next(true);
-              this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
-              this.router.navigate(['home']);
-            } else {
-              this.toastr.error('No se ha verificado el email correctamente', 'Login');
-              this.router.navigate(['registro/verify-email']);
-            }
-          }
-          user.unsubscribe();
-        });
-      }).catch((error) => {
-        this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
-      })
+    let cuenta: any = JSON.parse(localStorage.getItem('user'));
+    let user = this.pacienteService.getPaciente(this.email).subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        if (cuenta.emailVerified) {
+          let loggedUser = usuarios[0].payload.doc.data();
+          localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+          NavBarComponent.updateUserStatus.next(true);
+          this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+          this.router.navigate(['home']);
+        } else {
+          this.toastr.error('No se ha verificado el email correctamente', 'Login');
+          this.router.navigate(['registro/verify-email']);
+        }
+      }
+      user.unsubscribe();
+    });
   }
 
   logInEspecialista() {
-    this.authService.SignIn(this.email, this.password)
-      .then((res) => {
-        localStorage.setItem('user', JSON.stringify(res.user));
-        let user = this.especialistaService.getEspecialista(this.email).subscribe((usuarios: any) => {
-          if (usuarios[0] == null) {
-            this.toastr.error('Su cuenta no está asociada a un usuario especialista', 'Login');
+    let cuenta: any = JSON.parse(localStorage.getItem('user'));
+    let user = this.especialistaService.getEspecialista(this.email).subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        if (cuenta.emailVerified) {
+          let loggedUser = usuarios[0].payload.doc.data();
+          if (loggedUser.habilitado == true) {
+            localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+            NavBarComponent.updateUserStatus.next(true);
+            this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+            this.router.navigate(['home']);
           } else {
-            if (res.user.emailVerified) {
-              let loggedUser = usuarios[0].payload.doc.data();
-              if (loggedUser.habilitado == true) {
-                localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-                NavBarComponent.updateUserStatus.next(true);
-                this.toastr.success('Perfecto, bienvenido ' + res.user.email, 'Login');
-                this.router.navigate(['home']);
-              } else {
-                localStorage.removeItem('user');
-                this.toastr.error('Su cuenta aún no se encuentra habilitada. Por favor, pónganse en contaco con su administrador', 'Login');
-              }
-            } else {
-              this.toastr.error('No se ha verificado el email correctamente', 'Login');
-              this.router.navigate(['registro/verify-email']);
-            }
+            localStorage.removeItem('user');
+            this.toastr.error('Su cuenta aún no se encuentra habilitada. Por favor, pónganse en contaco con su administrador', 'Login');
           }
-          user.unsubscribe();
-        });
-
-      }).catch((error) => {
-        this.toastr.error('Algo salió mal, revise los datos ingresados', 'Login');
-      })
+        } else {
+          this.toastr.error('No se ha verificado el email correctamente', 'Login');
+          this.router.navigate(['registro/verify-email']);
+        }
+      }
+      user.unsubscribe();
+    });
   }
 
   cargarAdmin() {
@@ -113,15 +106,34 @@ export class LoginComponent implements OnInit {
     this.password = "123456";
   }
 
-  cargarPaciente() {
+  cargarPaciente1() {
+    this.email = "matiasgravante@fafafa.com";
+    this.password = "123456";
+  }
+
+  cargarPaciente2() {
     this.email = "alesilversalmon@hotmail.com";
     this.password = "123456";
   }
 
-  cargarEspecialista() {
+  cargarPaciente3() {
+    this.email = "juan@hotmail.com";
+    this.password = "juan123";
+  }
+
+  cargarEspecialista1() {
     this.email = "matiasgravante@gmail.com";
     this.password = "123456";
   }
 
+  cargarEspecialista2() {
+    this.email = "mgw009@gmail.com";
+    this.password = "123456";
+  }
+
+  userIsLogged() {
+    return JSON.parse(localStorage.getItem('loggedUser'));
+
+  }
 
 }

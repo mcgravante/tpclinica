@@ -5,14 +5,17 @@
 
   <main class="form-signin">
 
-    <button class="btn btn-md btn-primary" type="submit" (click)="registrarPaciente()">Registrar
-      Paciente</button>
+    
+    <button rounded=true class="btn btn-lg btn-primary btn-paciente" type="submit"
+      (click)="registrarPaciente()"><h1>Registrar Paciente</h1></button>
 
-    <button class="btn btn-md btn-primary" type="submit" (click)="registrarEspecialista()">Registrar
-      Especialista</button>
+    <button rounded=true class="btn btn-lg btn-primary btn-especialista" type="submit"
+      (click)="registrarEspecialista()">    <h1>Registrar Especialista</h1>
+    </button>
 
-    <button *ngIf="esAdmin" class="btn btn-md btn-primary" type="submit" (click)="registrarAdministrador()">Registrar
-      Administrador</button>
+    
+    <button rounded=true *ngIf="esAdmin && isUserPanel" class="btn btn-lg btn-primary" type="submit"
+      (click)="registrarAdministrador()"><h1>Registrar Administrador</h1></button>
     <br>
     <br>
 
