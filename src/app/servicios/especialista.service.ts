@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Especialidad } from '../clases/especialidad';
 import { Especialista } from '../clases/especialista';
 
 @Injectable({
@@ -14,6 +15,10 @@ export class EspecialistaService {
 
   getEspecialistas() {
     return this.firestore.collection("especialistas").snapshotChanges();
+  }
+
+  getEspecialistasByEspecialidad(especialidad:Especialidad) {
+    return this.firestore.collection("especialistas", ref => ref.where('especialidades', 'array-contains', especialidad)).snapshotChanges();
   }
 
   getEspecialista(email: string) {

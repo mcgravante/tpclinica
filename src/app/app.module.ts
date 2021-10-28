@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,19 @@ import { SeccionUsuariosComponent } from './componentes/seccion-usuarios/seccion
 import { DetalleUsuarioComponent } from './componentes/detalle-usuario/detalle-usuario.component';
 import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
 import { RespuestaBooleanoPipe } from './pipes/respuesta-booleano.pipe';
+import { MisTurnosComponent } from './componentes/mis-turnos/mis-turnos.component';
+import { TurnosPacienteComponent } from './componentes/turnos-paciente/turnos-paciente.component';
+import { TurnosEspecialistaComponent } from './componentes/turnos-especialista/turnos-especialista.component';
+import { TurnosComponent } from './componentes/turnos/turnos.component';
+import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.component';
+import { AltaTurnosComponent } from './componentes/alta-turnos/alta-turnos.component';
+import { ListaEspecialidadesComponent } from './componentes/lista-especialidades/lista-especialidades.component';
+import { ListaEspecialistasComponent } from './componentes/lista-especialistas/lista-especialistas.component';
+import { FiltroEspecialidadesPipe } from './pipes/filtro-especialidades.pipe';
+import { FiltroEspecialistasPipe } from './pipes/filtro-especialistas.pipe';
+import { DetalleTurnoComponent } from './componentes/detalle-turno/detalle-turno.component';
+import { FiltroMixtoEspecialidadEspecialistaPipe } from './pipes/filtro-mixto-especialidad-especialista.pipe';
+import { FiltroMixtoEspecialidadPacientePipe } from './pipes/filtro-mixto-especialidad-paciente.pipe';
 
 
 
@@ -50,6 +63,19 @@ import { RespuestaBooleanoPipe } from './pipes/respuesta-booleano.pipe';
     DetalleUsuarioComponent,
     TablaUsuariosComponent,
     RespuestaBooleanoPipe,
+    MisTurnosComponent,
+    TurnosPacienteComponent,
+    TurnosEspecialistaComponent,
+    TurnosComponent,
+    TablaTurnosComponent,
+    AltaTurnosComponent,
+    ListaEspecialidadesComponent,
+    ListaEspecialistasComponent,
+    FiltroEspecialidadesPipe,
+    FiltroEspecialistasPipe,
+    DetalleTurnoComponent,
+    FiltroMixtoEspecialidadEspecialistaPipe,
+    FiltroMixtoEspecialidadPacientePipe
   ],
   imports: [
     MatButtonModule,

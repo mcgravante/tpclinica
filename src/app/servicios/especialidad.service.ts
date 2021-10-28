@@ -13,9 +13,9 @@ export class EspecialidadService {
     this.especialidades = firestore.collection("especialidades").snapshotChanges();
   }
 
-  // getEspecialidades() {
-  //   return this.firestore.collection("especialidades").snapshotChanges();
-  // }
+  getEspecialidades() {
+    return this.firestore.collection("especialidades").snapshotChanges();
+  }
 
   getEspecialidad(key: string) {
     return this.firestore.collection("especialidades").doc(key).valueChanges();

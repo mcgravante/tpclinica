@@ -11,14 +11,26 @@ import { AuthenticationService } from 'src/app/shared/authentication-service';
 export class NavBarComponent implements OnInit {
   isLogged: boolean = false;
   esAdmin: boolean = false;
+  esEspec: boolean = false;
+  esPac: boolean = false;
   public static updateUserStatus: Subject<boolean> = new Subject();
 
   constructor(public router: Router, public authService: AuthenticationService) {
     NavBarComponent.updateUserStatus.subscribe(res => {
       this.isLogged = true;
       let user: any = JSON.parse(localStorage.getItem('loggedUser'));
-      if (user.tipo == 'administrador') {
+      if (user.tipo == "administrador") {
         this.esAdmin = true;
+        this.esEspec = false;
+        this.esPac = false;
+      } else if (user.tipo == "especialista") {
+        this.esAdmin = false;
+        this.esEspec = true;
+        this.esPac = false;
+      } else if (user.tipo == "paciente") {
+        this.esAdmin = false;
+        this.esEspec = false;
+        this.esPac = true;
       }
     })
   }
@@ -28,8 +40,18 @@ export class NavBarComponent implements OnInit {
 
     if (user) {
       this.isLogged = true;
-      if (user.tipo == 'administrador') {
+      if (user.tipo == "administrador") {
         this.esAdmin = true;
+        this.esEspec = false;
+        this.esPac = false;
+      } else if (user.tipo == "especialista") {
+        this.esAdmin = false;
+        this.esEspec = true;
+        this.esPac = false;
+      } else if (user.tipo == "paciente") {
+        this.esAdmin = false;
+        this.esEspec = false;
+        this.esPac = true;
       }
     }
     else {
@@ -41,6 +63,8 @@ export class NavBarComponent implements OnInit {
   logOut() {
     this.isLogged = false;
     this.esAdmin = false;
+    this.esAdmin = false;
+    this.esEspec = false;
     this.authService.SignOut()
   }
 

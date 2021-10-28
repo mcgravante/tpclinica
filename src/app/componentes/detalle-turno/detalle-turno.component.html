@@ -1,0 +1,204 @@
+<div class="h-100 p-5 text-white bg-dark rounded-3">
+    <div *ngIf="turnoSeleccionado">
+
+
+
+        <div *ngIf="administrador">
+            <span>Especialidad: {{turnoSeleccionado.especialidad}}</span>
+            <br>
+            <span>Especialista: {{turnoSeleccionado.especialistaNombre}}</span>
+            <br>
+            <span>Paciente: {{turnoSeleccionado.pacienteNombre}}</span>
+            <br>
+            <span>Fecha: {{turnoSeleccionado.fecha}}</span>
+            <br>
+            <span>Estado: {{turnoSeleccionado.estado}}</span>
+            <br>
+            <br>
+            <button *ngIf="turnoSeleccionado.estado =='En espera'" class="btn btn-sm btn-outline-light" type="button"
+                (click)="abrirForm()">{{mensajeBotonCancelarTurno}}</button>
+            <br>
+            <br>
+            <form *ngIf="turnoCancelado && turnoSeleccionado.estado!='Cancelado'" [formGroup]="formCancelacionTurno"
+                (ngSubmit)="cancelarTurno(turnoSeleccionado)">
+                <h6 class="mb-3">Cancelación de turno</h6>
+                <div class="form-group">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="comentario">Motivo de la cancelación</label>
+                            <input type="text" class="form-control" formControlName="comentarioCancelacion"
+                                placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formCancelacionTurno.get('comentarioCancelacion')?.hasError('required') && formCancelacionTurno.get('comentarioCancelacion')?.touched">Debe
+                                escribir el motivo de la cancelación.</span>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary btn-md" [disabled]="formCancelacionTurno.invalid"
+                            type="submit">Efectuar
+                            cancelación de turno</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+
+
+        <div *ngIf="especialista">
+            <span>Especialidad: {{turnoSeleccionado.especialidad}}</span>
+            <br>
+            <span>Paciente: {{turnoSeleccionado.pacienteNombre}}</span>
+            <br>
+            <span>Fecha: {{turnoSeleccionado.fecha}}</span>
+            <br>
+            <span>Estado: {{turnoSeleccionado.estado}}</span>
+            <br>
+            <br>
+            <button *ngIf="turnoSeleccionado.estado=='En espera' || turnoSeleccionado.estado=='Aceptado'"
+                class="btn btn-sm btn-outline-light" type="button"
+                (click)="abrirFormCambioEstado(turnoSeleccionado)">{{mensajeBotonCambiarEstadoTurno}}</button>
+            <br>
+            <br>
+            <div *ngIf="turnoCambioEstado">
+                <h6 class="mb-3">Cambio de estado de turno</h6>
+                <div class="row g-3">
+                    <select name="listaEstados" [(ngModel)]="estadoSeleccionado">
+                        <option [value]="item" *ngFor="let item of listaEstados">{{item}}</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="row g-3">
+                    <form
+                        *ngIf="turnoCambioEstado && (estadoSeleccionado=='Cancelado' || estadoSeleccionado=='Rechazado') "
+                        [formGroup]="formCanceloRechazoTurno" (ngSubmit)="cambiarEstadoTurno(turnoSeleccionado)">
+                        <div class="form-group">
+                            <label for="comentario">Motivo del cambio de estado</label>
+                            <input type="text" class="form-control" formControlName="resenia" placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formCanceloRechazoTurno.get('resenia')?.hasError('required') && formCanceloRechazoTurno.get('resenia')?.touched">Debe
+                                escribir el motivo del cambio de estado.</span>
+                            <br> <button class="btn btn-primary btn-md" [disabled]="formCanceloRechazoTurno.invalid"
+                                type="submit">Efectuar
+                                cambio de estado</button>
+                        </div>
+                    </form>
+                    <form *ngIf="estadoSeleccionado=='Finalizado'" [formGroup]="formFinalizoTurno"
+                        (ngSubmit)="cambiarEstadoTurno(turnoSeleccionado)">
+                        <div class="form-group">
+                            <label for="comentario">Comentario/Diagnóstico</label>
+                            <input type="text" class="form-control" formControlName="resenia" placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formFinalizoTurno.get('resenia')?.hasError('required') && formFinalizoTurno.get('resenia')?.touched">Debe
+                                escribir una reseña.</span>
+                            <br>
+                            <button class="btn btn-primary btn-md" [disabled]="formFinalizoTurno.invalid"
+                                type="submit">Finalizar turno</button>
+                        </div>
+                    </form>
+                    <button *ngIf="estadoSeleccionado=='Aceptado'" class="btn btn-primary btn-md"
+                        (click)="cambiarEstadoTurno(turnoSeleccionado)" type="button">Aceptar
+                        turno</button>
+                </div>
+            </div>
+            <button *ngIf="turnoSeleccionado.resenia || turnoSeleccionado.calificacion" class="btn btn-primary btn-sm"
+                type="button" (click)="mostrarResenia()">{{mensajeBotonResenia}}</button>
+            <br>
+            <br>
+            <div *ngIf="verResenia">
+                <span *ngIf="turnoSeleccionado.estado=='Cancelado'">Motivo de la cancelación:</span>
+                <span *ngIf="turnoSeleccionado.estado=='Rechazado'">Motivo del rechazo:</span>
+                <span *ngIf="turnoSeleccionado.estado=='Finalizado'">Comentarios/diagnóstico:</span>
+                <span> {{turnoSeleccionado.resenia}}</span>
+            </div>
+            <br>
+        </div>
+
+
+
+
+
+        <div *ngIf="paciente">
+            <span>Especialidad: {{turnoSeleccionado.especialidad}}</span>
+            <br>
+            <span>Especialista: {{turnoSeleccionado.especialistaNombre}}</span>
+            <br>
+            <span>Fecha: {{turnoSeleccionado.fecha}}</span>
+            <br>
+            <span>Estado: {{turnoSeleccionado.estado}}</span>
+            <br>
+            <br>
+            <button *ngIf="turnoSeleccionado.estado!='Finalizado'" class="btn btn-sm btn-outline-light" type="button"
+                (click)="abrirForm()"
+                [disabled]="turnoSeleccionado.estado=='Cancelado'">{{mensajeBotonCancelarTurno}}</button>
+            <br>
+            <br>
+            <form *ngIf="turnoCancelado && turnoSeleccionado.estado!='Cancelado'" [formGroup]="formCancelacionTurno"
+                (ngSubmit)="cancelarTurno(turnoSeleccionado)">
+                <h6 class="mb-3">Cancelación de turno</h6>
+                <div class="form-group">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="comentario">Motivo de la cancelación</label>
+                            <input type="text" class="form-control" formControlName="comentarioCancelacion"
+                                placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formCancelacionTurno.get('comentarioCancelacion')?.hasError('required') && formCancelacionTurno.get('comentarioCancelacion')?.touched">Debe
+                                escribir el motivo de la cancelación.</span>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary btn-md" [disabled]="formCancelacionTurno.invalid"
+                            type="submit">Efectuar
+                            cancelación de turno</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <button *ngIf="turnoSeleccionado.resenia || turnoSeleccionado.calificacion" class="btn btn-primary btn-sm"
+                type="button" (click)="mostrarResenia()">{{mensajeBotonResenia}}</button>
+            <br>
+            <br>
+            <div *ngIf="verResenia">
+                <span *ngIf="turnoSeleccionado.estado=='Cancelado'">Motivo de la cancelación:</span>
+                <span *ngIf="turnoSeleccionado.estado=='Rechazado'">Motivo del rechazo:</span>
+                <span *ngIf="turnoSeleccionado.estado=='Finalizado'">Comentarios/diagnóstico:</span>
+                <span> {{turnoSeleccionado.resenia}}</span>
+                <br>
+                <span *ngIf="turnoSeleccionado.calificacion">Calificación:</span>
+                <span> {{turnoSeleccionado.calificacion}}</span>
+            </div>
+            <br>
+
+            <button *ngIf="turnoSeleccionado.estado=='Finalizado'" class="btn btn-sm btn-outline-light" type="button"
+                (click)="abrirCalificacion()"
+                [disabled]="turnoSeleccionado.calificacion">{{mensajeBotonCalificacion}}</button>
+            <br>
+            <br>
+            <form *ngIf="completarCalificacion" [formGroup]="formCalificacion"
+                (ngSubmit)="calificarAtencion(turnoSeleccionado)">
+                <h6 class="mb-3">Calificación de atención</h6>
+                <div class="form-group">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="calificacion">Calificación</label>
+                            <input type="text" class="form-control" formControlName="calificacion" placeholder="">
+                            <span class="text-danger"
+                                *ngIf="formCalificacion.get('calificacion')?.hasError('required') && formCalificacion.get('calificacion')?.touched">Debe
+                                dejar una calificación de la atención brindada por el profesional.</span>
+                        </div>
+                        <br>
+                        <button class="btn btn-primary btn-md" [disabled]="formCalificacion.invalid"
+                            type="submit">Guardar
+                            calificación</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

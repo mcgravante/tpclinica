@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
+import { MisTurnosComponent } from './componentes/mis-turnos/mis-turnos.component';
 import { SeccionUsuariosComponent } from './componentes/seccion-usuarios/seccion-usuarios.component';
+import { TurnosComponent } from './componentes/turnos/turnos.component';
 import { LoginComponent } from './login/login.component';
 import { RegistroModule } from './modulos/registro/registro.module';
 import { RegistroComponent } from './registro/registro.component';
@@ -15,6 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'mis-turnos', component: MisTurnosComponent
+  },
+  {
+    path: 'turnos', component: TurnosComponent
   },
   {
     path: 'registro', loadChildren: () => import('./modulos/registro/registro.module').then(m => RegistroModule)

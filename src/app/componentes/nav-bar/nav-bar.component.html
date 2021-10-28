@@ -24,6 +24,9 @@
                             <a *ngIf="esAdmin" class="nav-link" href="seccion-usuarios">Sección Usuarios</a>
                         </li>
                         <li class="nav-item">
+                            <a *ngIf="esPac || esEspec" class="nav-link" href="mis-turnos">Mis Turnos</a>
+                        </li>
+                        <li class="nav-item">
                             <a *ngIf="isLogged" class="nav-link" (click)="logOut()">Salir</a>
                         </li>
 

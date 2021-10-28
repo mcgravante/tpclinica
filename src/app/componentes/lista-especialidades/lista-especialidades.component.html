@@ -1,0 +1,8 @@
+<p><input type="text" [(ngModel)]="filter"></p>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item d-flex justify-content-between lh-sm" (click)="seleccionarEspecialidad(especialidad)"
+    *ngFor="let especialidad of arrayEspecialidades | filtroEspecialidades:filter">
+    {{especialidad.nombre}}
+  </li>
+</ul>
