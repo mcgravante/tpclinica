@@ -8,12 +8,12 @@
             <br><br>
             <h1>Bienvenide</h1>
             <h2>Elija una opción, estoy seguro de que perderá..</h2>
-<br><br><br>
+            <br><br><br>
             <p class="lead">
                 <a *ngIf="!isLogged" href="login" class="btn btn-lg btn-primary ">Ingresar</a>
                 <a href="registro" class="btn btn-lg btn-primary">Registro</a>
                 <a *ngIf="esAdmin" class="btn btn-lg btn-primary" href="seccion-usuarios">Sección Usuarios</a>
-
+                <a *ngIf="esAdmin" class="btn btn-lg btn-primary" href="turnos">Administración de turnos</a>
             </p>
         </main>
 

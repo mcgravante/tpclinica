@@ -21,10 +21,20 @@
                             <a class="nav-link" href="registro">Registro</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esAdmin" class="nav-link" href="seccion-usuarios">Sección Usuarios</a>
+                            <a *ngIf="isLogged" class="nav-link" href="mi-perfil">Mi perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esPac || esEspec" class="nav-link" href="mis-turnos">Mis Turnos</a>
+                            <a *ngIf="esAdmin" class="nav-link" href="seccion-usuarios">Sección usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a *ngIf="esAdmin" class="nav-link" href="turnos">Administración de turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a *ngIf="esPac || esEspec" class="nav-link" href="mis-turnos">Mis turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a *ngIf="esPac || esAdmin" class="nav-link" href="solicitar-turno">Solicitar nuevo
+                                turno</a>
                         </li>
                         <li class="nav-item">
                             <a *ngIf="isLogged" class="nav-link" (click)="logOut()">Salir</a>

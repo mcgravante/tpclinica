@@ -1,0 +1,89 @@
+<div class="h-100 p-5 text-white bg-dark rounded-3">
+    <div class="row">
+        <div class="col-sm-4">
+            <ul class="list-group mb-3">
+                <h3>Especialidades</h3>
+                <p><input type="text" [(ngModel)]="filter"></p>
+                <li class="list-group-item d-flex justify-content-between lh-sm"
+                    (click)="seleccionarEspecialidad(especialidad)"
+                    *ngFor="let especialidad of arrayEspecialidades | filtroEspecialidades:filter">
+                    <span>{{especialidad.nombre}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-4">
+            <h3>Horarios para {{especialidadSeleccionada.nombre}}</h3>
+            <ul *ngIf="disponibilidadMuestra" class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm"
+                    *ngFor="let franja of disponibilidadMuestra.franjas">
+                    <span>{{franja.dia}}</span>
+                    <span>Desde {{franja.start}}</span>
+                    <span>Hasta {{franja.finish}}</span>
+
+                </li>
+            </ul>
+
+
+
+        </div>
+        <form class="col-sm-4" [formGroup]="formNuevaDisp" (ngSubmit)="agregarNuevaDisponibilidad()">
+            <div class="form-group">
+                <h3>Nueva disponibilidad</h3>
+                <label for="appt">Especialidad:</label>
+                <p><input type="text" formControlName="especialidad" readonly></p>
+                <span class="text-danger"
+                    *ngIf="formNuevaDisp.get('especialidad')?.hasError('required') && formNuevaDisp.get('especialidad')?.touched">Debe
+                    elegir especialidad en la tabla.</span>
+                <label for="appt">Seleccionar día:</label>
+                <br>
+                <select name="listaDias" formControlName="diaSeleccionado">
+                    <option [value]="item" *ngFor="let item of listaDias">{{item}}</option>
+                </select>
+                <span class="text-danger"
+                    *ngIf="formNuevaDisp.get('diaSeleccionado')?.hasError('required') && formNuevaDisp.get('diaSeleccionado')?.touched">Debe
+                    elegir un día.</span>
+                <br>
+                <label for="appt">Seleccionar comienzo de franja horaria:</label>
+                <input type="time" id="idStart" name="start" formControlName="comienzo">
+                <br>
+                <span class="text-danger"
+                    *ngIf="formNuevaDisp.get('comienzo')?.hasError('required') && formNuevaDisp.get('comienzo')?.touched">Debe
+                    elegir inicio de franja de disponibilidad.</span>
+                <br>
+                <label for="appt">Seleccionar fin de franja horaria:</label>
+                <br>
+                <input type="time" id="idFinish" name="finish" formControlName="finalizacion">
+                <span class="text-danger"
+                    *ngIf="formNuevaDisp.get('finalizacion')?.hasError('required') && formNuevaDisp.get('finalizacion')?.touched">Debe
+                    elegir fin de franja de disponibilidad.</span>
+                <br>
+                <button
+                    *ngIf="!formNuevaDisp.get('finalizacion')?.hasError('required') && !formNuevaDisp.get('comienzo')?.hasError('required') && !formNuevaDisp.get('diaSeleccionado')?.hasError('required')"
+                    class="btn btn-outline-light" type="button" (click)="agregarFranja()">Agregar nueva
+                    franja</button>
+
+                <ul class="list-group mb-3">
+                    <h5>Franjas agregadas</h5>
+                    <li class="list-group-item d-flex justify-content-between lh-sm"
+                        *ngFor="let franja of listaFranjas">
+                        <span>{{franja.dia}}</span>
+                        <span>Desde {{franja.start}}</span>
+                        <span>Hasta {{franja.finish}}</span>
+
+                    </li>
+                </ul>
+
+                <label for="appt">Duración mínima del turno:</label>
+                <br>
+                <p><input type="number" formControlName="duracionTurno"></p>
+                <span class="text-danger"
+                    *ngIf="formNuevaDisp.get('duracionTurno')?.hasError('required') && formNuevaDisp.get('duracionTurno')?.touched">Debe
+                    elegir duración mínima del turno.</span>
+
+
+                <br> <button class="btn btn-primary btn-md" [disabled]="formNuevaDisp.invalid" type="submit">Guarda
+                    disponibilidad</button>
+            </div>
+        </form>
+    </div>
+</div>

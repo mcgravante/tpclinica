@@ -3,25 +3,23 @@
 
 <body>
 
-  <main>
-    <div class="container py-4">
+    <main>
+        <div class="container py-4">
 
-      <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-          <h1 class="display-5 fw-bold">Mis turnos</h1>
-          <app-tabla-turnos (seSeleccionoTurno)="mostrar($event)" [tipoUsuario]="'administrador'"></app-tabla-turnos>
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Administración de turnos</h1>
+                    <app-tabla-turnos (seSeleccionoTurno)="mostrar($event)" [tipoUsuario]="'administrador'">
+                    </app-tabla-turnos>
+                </div>
+            </div>
+            <div class="row">
+                <app-detalle-turno [turnoSeleccionado]="turnoSeleccionado" [administrador]="true">
+                </app-detalle-turno>
+            </div>
+
         </div>
-      </div>
-      <div class="row">
-          <app-detalle-turno [turnoSeleccionado]="turnoSeleccionado" [administrador]="true">
-          </app-detalle-turno>
-      </div>
-
-    </div>
-  </main>
-
-
-
+    </main>
 </body>
 
 </html>

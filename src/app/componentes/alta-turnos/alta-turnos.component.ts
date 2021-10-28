@@ -7,6 +7,7 @@ import { Especialidad } from 'src/app/clases/especialidad';
 import { EstadoTurno, Turno } from 'src/app/clases/turno';
 import { TurnosService } from 'src/app/servicios/turnos.service';
 import { Especialista } from 'src/app/clases/especialista';
+import { Paciente } from 'src/app/clases/paciente';
 
 @Component({
   selector: 'app-alta-turnos',
@@ -18,6 +19,7 @@ export class AltaTurnosComponent implements OnInit {
 
   especialidadSeleccionada: Especialidad;
   especialistaSeleccionado: Especialista;
+  esAdmin: boolean = false;
 
 
   formAltaTurno: FormGroup;
@@ -33,17 +35,28 @@ export class AltaTurnosComponent implements OnInit {
     this.formAltaTurno = fb.group({
       especialista: ["", Validators.required],
       fecha: ["", [Validators.required, this.validarFecha]],
-      especialidad: ["", Validators.required]
+      especialidad: ["", Validators.required],
+      paciente: ["", Validators.required]
     })
   }
 
   ngOnInit() {
+    let user: any = JSON.parse(localStorage.getItem('loggedUser'));
+    if (user.tipo == 'administrador') {
+      this.esAdmin = true;
+    }
   }
 
   guardarTurno() {
     let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     let pacienteMail: string = loggedUser.mail;
-    let pacienteNombre: string = loggedUser.nombre + ' ' + loggedUser.apellido;
+    let pacienteNombre: string;
+    if(this.esAdmin){
+      pacienteNombre =  this.formAltaTurno.controls['paciente'].value;
+    } else{
+      pacienteNombre = loggedUser.nombre + ' ' + loggedUser.apellido;
+
+    }
     let especialistaMail = this.especialistaSeleccionado.mail;
     let especialistaNombre = this.especialistaSeleccionado.nombre + ' ' + this.especialistaSeleccionado.apellido;
     let especialidad = this.formAltaTurno.controls['especialidad'].value;
@@ -75,7 +88,9 @@ export class AltaTurnosComponent implements OnInit {
     this.especialistaSeleccionado = especialista;
     this.formAltaTurno.controls['especialista'].setValue(especialista.nombre);
   }
-
+  cambiarPaciente(paciente: Paciente) {
+    this.formAltaTurno.controls['paciente'].setValue(paciente.nombre);
+  }
   validarFecha(control: AbstractControl) {
     let fechaUsuario: string = control.value;
     var formattedFechaUsuario = fechaUsuario.replace(/(\d+[-])(\d+[-])/, '$2$1');

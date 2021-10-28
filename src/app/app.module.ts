@@ -45,6 +45,9 @@ import { FiltroEspecialistasPipe } from './pipes/filtro-especialistas.pipe';
 import { DetalleTurnoComponent } from './componentes/detalle-turno/detalle-turno.component';
 import { FiltroMixtoEspecialidadEspecialistaPipe } from './pipes/filtro-mixto-especialidad-especialista.pipe';
 import { FiltroMixtoEspecialidadPacientePipe } from './pipes/filtro-mixto-especialidad-paciente.pipe';
+import { ListaPacientesComponent } from './componentes/lista-pacientes/lista-pacientes.component';
+import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
+import { HorariosComponent } from './componentes/horarios/horarios.component';
 
 
 
@@ -75,7 +78,10 @@ import { FiltroMixtoEspecialidadPacientePipe } from './pipes/filtro-mixto-especi
     FiltroEspecialistasPipe,
     DetalleTurnoComponent,
     FiltroMixtoEspecialidadEspecialistaPipe,
-    FiltroMixtoEspecialidadPacientePipe
+    FiltroMixtoEspecialidadPacientePipe,
+    ListaPacientesComponent,
+    MiPerfilComponent,
+    HorariosComponent
   ],
   imports: [
     MatButtonModule,
