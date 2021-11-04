@@ -1,9 +1,9 @@
 <p><input type="text" [(ngModel)]="filter"></p>
 
-<ul class="list-group mb-3">
-  <li class="list-group-item d-flex justify-content-between lh-sm" (click)="seleccionarEspecialista(especialista)"
-    *ngFor="let especialista of arrayEspecialistas | filtroEspecialistas:filter">
-    {{especialista.nombre}} {{especialista.apellido}}
-
-  </li>
-</ul>
+<li class="d-inline-block" (click)="seleccionarEspecialista(especialista)"
+  *ngFor="let especialista of arrayEspecialistas | filtroEspecialistas:filter">
+  <button type="button" style="border-radius: 2px;">
+    <img src="{{especialista.fotoUrl}}" class="image" style="width: 160px; height: 90px; ">
+    <p> {{especialista.nombre}} {{especialista.apellido}} </p>
+  </button>
+</li>

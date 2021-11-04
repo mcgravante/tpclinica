@@ -63,7 +63,7 @@ export class NavBarComponent implements OnInit {
   logOut() {
     this.isLogged = false;
     this.esAdmin = false;
-    this.esAdmin = false;
+    this.esPac = false;
     this.esEspec = false;
     this.authService.SignOut()
   }

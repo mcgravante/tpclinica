@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
-
+@import url("https://fonts.googleapis.com/css?family=Bangers&display=swap");
 
 html,
 body,
@@ -9,8 +8,8 @@ main {
 }
 
 body {
-  display: contents;
-  align-items: center;
+  display:inline-block;
+  align-items:center;
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;
@@ -28,7 +27,7 @@ body {
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
 }
 
 .btn-especialista {
@@ -36,28 +35,20 @@ body {
   height: 400px;
   width: 400px;
   border-radius: 50%;
-  font-family: 'Bangers', cursive;
+  font-family: "Bangers", cursive;
 }
 
 h1 {
-  position:relative;
-  top: 70px;
-  color:rgb(0, 0, 0);
+  position: relative;
+  top: 250px;
+  color: rgb(0, 0, 0);
   z-index: 2;
-  font-size:larger;
+  font-size: larger;
   -webkit-text-stroke-color: white;
   letter-spacing: 15px;
   text-transform: uppercase;
   transform: rotate(-10deg);
-  text-shadow: 1px 1px hsl(0, 70%, 40%),
-               2px 2px hsl(0, 100%,39%),
-               3px 3px hsl(0, 100%, 38%),
-               4px 4px hsl(0, 100%, 37%),
-               5px 5px hsl(0, 100%, 36%),
-               6px 6px hsl(0, 100%, 35%),
-               7px 7px hsl(0, 100%, 34%),
-               8px 8px hsl(0, 100%, 33%),
-               9px 9px hsl(0, 100%, 32%),
-               10px 10px hsl(0, 100%, 31%),
-               10px 10px 30px rgba(0,0,0,.7),
+  text-shadow: 1px 1px hsl(0, 70%, 40%), 2px 2px hsl(0, 100%, 39%), 3px 3px hsl(0, 100%, 38%), 4px 4px hsl(0, 100%, 37%),
+    5px 5px hsl(0, 100%, 36%), 6px 6px hsl(0, 100%, 35%), 7px 7px hsl(0, 100%, 34%), 8px 8px hsl(0, 100%, 33%),
+    9px 9px hsl(0, 100%, 32%), 10px 10px hsl(0, 100%, 31%), 10px 10px 30px rgba(0, 0, 0, 0.7);
 }

@@ -18,6 +18,13 @@ import { Especialista } from '../clases/especialista';
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
+  public adminFotoUrl:string;
+public pac1FotoUrl:string;
+public pac2FotoUrl:string;
+public pac3FotoUrl:string;
+public espec1FotoUrl:string;
+public espec2FotoUrl:string;
+
   constructor(
     public administradorService: AdministradorService,
     public pacienteService: PacienteService,
@@ -27,7 +34,50 @@ export class LoginComponent implements OnInit {
     public toastr: ToastrService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    let admin = this.administradorService.getAdministrador("matiasgravante@hotmail.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.adminFotoUrl = usuarios[0].payload.doc.data().fotoUrl;
+      }
+      admin.unsubscribe();
+    });
+
+    let pac1 = this.pacienteService.getPaciente("matiasgravante@fafafa.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.pac1FotoUrl = usuarios[0].payload.doc.data().foto1Url;
+      }
+      pac1.unsubscribe();
+    });
+
+    let pac2 = this.pacienteService.getPaciente("alesilversalmon@hotmail.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.pac2FotoUrl = usuarios[0].payload.doc.data().foto1Url;
+      }
+      pac2.unsubscribe();
+    });
+
+    let pac3 = this.pacienteService.getPaciente("juan@hotmail.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.pac3FotoUrl = usuarios[0].payload.doc.data().foto1Url;
+      }
+      pac3.unsubscribe();
+    });
+
+    let espec1 = this.especialistaService.getEspecialista("matiasgravante@gmail.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.espec1FotoUrl = usuarios[0].payload.doc.data().fotoUrl;
+      }
+      espec1.unsubscribe();
+    });
+
+    let espec2 = this.especialistaService.getEspecialista("mgw009@gmail.com").subscribe((usuarios: any) => {
+      if (usuarios[0] != null) {
+        this.espec2FotoUrl = usuarios[0].payload.doc.data().fotoUrl;
+      }
+      espec2.unsubscribe();
+    });
+
+   }
 
   logIn() {
     this.authService.SignIn(this.email, this.password)

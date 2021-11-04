@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Especialidad } from 'src/app/clases/especialidad';
+import { Especialista } from 'src/app/clases/especialista';
 import { EspecialidadService } from 'src/app/servicios/especialidad.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { EspecialidadService } from 'src/app/servicios/especialidad.service';
 })
 export class ListaEspecialidadesComponent implements OnInit {
   @Output() seSeleccionoEspecialidad: EventEmitter<any> = new EventEmitter<any>();
+  @Input() especialistaSeleccionado: Especialista;
+
 
   arrayEspecialidades: Especialidad[] = [];
   filter: string = '';
@@ -16,16 +19,11 @@ export class ListaEspecialidadesComponent implements OnInit {
 
   constructor(public especialidadService: EspecialidadService) { }
 
-  ngOnInit(): void {
-    this.especialidadService.getEspecialidades().subscribe((especialidades: any) => {
-      let listaEspecialidades: Especialidad[] = [];
-      for (let index = 0; index < especialidades.length; index++) {
-        const especialidad = especialidades[index];
-        listaEspecialidades.push(especialidad.payload.doc.data());
-      }
-      this.arrayEspecialidades = listaEspecialidades;
-    })
+  ngOnChanges() {
+    this.arrayEspecialidades = this.especialistaSeleccionado.especialidades;
   }
+
+  ngOnInit() { }
 
   seleccionarEspecialidad(especialidad: Especialidad) {
     this.seSeleccionoEspecialidad.emit(especialidad);

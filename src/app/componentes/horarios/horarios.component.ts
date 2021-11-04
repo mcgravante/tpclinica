@@ -1,12 +1,41 @@
 import { Time } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DisponibilidadEspecialistas } from 'src/app/clases/disponibilidad-especialistas';
 import { Especialidad } from 'src/app/clases/especialidad';
 import { Dia, Franja } from 'src/app/clases/franja';
 import { DisponibilidadEspecialistaService } from 'src/app/servicios/disponibilidad-especialista.service';
 import { EspecialidadService } from 'src/app/servicios/especialidad.service';
+
+const validarFranja: ValidatorFn = (formNuevaDisp: FormGroup) => {
+  let diaSeleccionado = formNuevaDisp.controls['diaSeleccionado'].value;
+  if (diaSeleccionado == 'domingo') {
+    return { noSeTrabaja: true };
+  }
+  let comienzoDeFranja: Time = extractTime(formNuevaDisp.controls['comienzo'].value);
+  let finalizacionDeFranja: Time = extractTime(formNuevaDisp.controls['finalizacion'].value);
+
+  if (comienzoDeFranja.hours > finalizacionDeFranja.hours) {
+    return { fueraDeRango: true };
+  }
+  else if (diaSeleccionado == 'sabado') {
+    if (comienzoDeFranja.hours < 8 || finalizacionDeFranja.hours > 14) {
+      return { fueraDeRango: true };
+    }
+    else {
+      return null;
+    }
+  }
+  else {
+    if (comienzoDeFranja.hours < 8 || finalizacionDeFranja.hours > 19) {
+      return { fueraDeRango: true };
+    }
+    else {
+      return null;
+    }
+  }
+}
 
 @Component({
   selector: 'app-horarios',
@@ -33,25 +62,26 @@ export class HorariosComponent implements OnInit {
     public disponibilidadService: DisponibilidadEspecialistaService,
     public fb: FormBuilder) {
     this.formNuevaDisp = fb.group({
-      duracionTurno: ["", Validators.required],
+      duracionTurno: ["", [Validators.required, Validators.min(30)]],
       especialidad: ["", Validators.required],
       diaSeleccionado: ["", Validators.required],
-      comienzo: ["", Validators.required],
-      finalizacion: ["", Validators.required],
-    });
+      comienzo: ["", [Validators.required, Validators.pattern]],
+      finalizacion: ["", [Validators.required, Validators.pattern]],
+    }, { validator: validarFranja });
   }
 
   ngOnInit(): void {
     this.arrayEspecialidades = this.especialista.especialidades;
-    // var d = new Date(dateString);
-    // var dayName = listaDias[d.getDay()];
   }
 
   seleccionarEspecialidad(especialidad: Especialidad) {
     this.disponibilidadMuestra = null;
+    this.listaFranjas = [];
     this.especialidadSeleccionada = especialidad;
     this.disponibilidadService.getDisponibilidadesByEspecialistaEspecialidad(this.especialista.mail, this.especialidadSeleccionada.nombre).subscribe((disponibilidades: any) => {
-      this.disponibilidadMuestra = disponibilidades[0].payload.doc.data()
+      if (disponibilidades.length != 0) {
+        this.disponibilidadMuestra = disponibilidades[0].payload.doc.data()
+      }
     })
     this.formNuevaDisp.controls['especialidad'].setValue(especialidad.nombre);
   }
@@ -88,4 +118,10 @@ export class HorariosComponent implements OnInit {
   showError(error: any) {
     this.toastr.error('Algo salió mal. Error: ' + error);
   }
+
 }
+function extractTime(time: string): Time {
+  const [h, m] = time.split(':');
+  return { hours: +h, minutes: +m };
+}
+

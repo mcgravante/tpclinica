@@ -7,7 +7,7 @@ export class Turno {
     public pacienteNombre: string;
     public especialistaMail: string;
     public especialistaNombre: string;
-    public fecha: string;
+    public fecha: Date;
     public especialidad: string;
     public estado: EstadoTurno;
     public encuesta: string;
@@ -15,7 +15,7 @@ export class Turno {
     public resenia: string;
 
 
-    constructor(pacienteMail: string, pacienteNombre: string, especialistaMail: string, especialistaNombre: string, fecha: string, especialidad: string, estado: EstadoTurno, encuesta: string, calificacion: string, resenia: string) {
+    constructor(pacienteMail: string, pacienteNombre: string, especialistaMail: string, especialistaNombre: string, fecha: Date, especialidad: string, estado: EstadoTurno, encuesta: string, calificacion: string, resenia: string) {
         this.pacienteMail = pacienteMail;
         this.especialistaMail = especialistaMail;
         this.pacienteNombre = pacienteNombre;

@@ -15,10 +15,10 @@ export class Franja {
 }
 
 export enum Dia {
-    lunes = 2,
-    martes = 3,
-    miercoles = 4,
-    jueves = 5,
-    viernes = 6,
-    sabado = 7
+    lunes = 1,
+    martes = 2,
+    miercoles = 3,
+    jueves = 4,
+    viernes = 5,
+    sabado = 6
 }

@@ -6,14 +6,14 @@
   <main class="form-signin">
 
     <div *ngIf="!isUserPanel">
-      <button rounded=true class="btn btn-lg btn-primary btn-paciente" type="submit" (click)="registrarPaciente()">
+      <a rounded=true class="btn btn-lg btn-primary btn-paciente" type="submit" href="registro/paciente">
         <h1>Registrar Paciente</h1>
-      </button>
-
-      <button rounded=true class="btn btn-lg btn-primary btn-especialista" type="submit"
-        (click)="registrarEspecialista()">
+      </a>
+      
+      <a rounded=true class="btn btn-lg btn-primary btn-especialista" type="submit"
+      href="registro/especialista">
         <h1>Registrar Especialista</h1>
-      </button>
+    </a>
       
     </div>
 

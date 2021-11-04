@@ -1,8 +1,10 @@
 <p><input type="text" [(ngModel)]="filter"></p>
 
-<ul class="list-group mb-3">
-    <li class="list-group-item d-flex justify-content-between lh-sm" (click)="seleccionarPaciente(paciente)"
-        *ngFor="let paciente of arrayPacientes | filtroEspecialistas:filter">
-        {{paciente.nombre}} {{paciente.apellido}}
-    </li>
-</ul>
+<li class="d-inline-block" (click)="seleccionarPaciente(paciente)"
+    *ngFor="let paciente of arrayPacientes | filtroEspecialistas:filter">
+    <button type="button" style="border-radius: 2px;">
+        <img src="{{paciente.foto1Url}}" class="image" style="width: 160px; height: 90px; ">
+        <p>{{paciente.nombre}} {{paciente.apellido}} </p>
+    </button>
+
+</li>

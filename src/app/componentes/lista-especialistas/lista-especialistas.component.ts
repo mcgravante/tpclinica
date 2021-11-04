@@ -11,7 +11,6 @@ import { EspecialistaService } from 'src/app/servicios/especialista.service';
 })
 export class ListaEspecialistasComponent implements OnInit {
   @Output() seSeleccionoEspecialista: EventEmitter<any> = new EventEmitter<any>();
-  @Input() especialidadSeleccionada: Especialidad;
   public static updateListaEspecialistas: Subject<boolean> = new Subject();
 
 
@@ -22,9 +21,8 @@ export class ListaEspecialistasComponent implements OnInit {
   constructor(public especialistaService: EspecialistaService) {
   }
 
-  ngOnChanges() {
-
-    this.especialistaService.getEspecialistasByEspecialidad(this.especialidadSeleccionada).subscribe((especialistas: any) => {
+  ngOnInit() {
+    this.especialistaService.getEspecialistas().subscribe((especialistas: any) => {
       let listaEspecialistas: Especialista[] = [];
       for (let index = 0; index < especialistas.length; index++) {
         const especialista = especialistas[index];
@@ -32,10 +30,6 @@ export class ListaEspecialistasComponent implements OnInit {
       }
       this.arrayEspecialistas = listaEspecialistas;
     })
-
-  }
-
-  ngOnInit(): void {
   }
 
   seleccionarEspecialista(especialista: Especialista) {

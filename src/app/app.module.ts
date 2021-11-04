@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { DatePipe } from '@angular/common'
+
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -99,7 +101,7 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [AngularFirestoreModule],
+  providers: [AngularFirestoreModule, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
