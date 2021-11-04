@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common'
 
+import { RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -89,6 +90,8 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
     MatButtonModule,
     MatIconModule,
     BrowserModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -101,7 +104,10 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [AngularFirestoreModule, DatePipe],
+  providers: [{
+    provide: RECAPTCHA_SETTINGS,
+    useValue: { siteKey: '6LdVRwsdAAAAAD0LkkzBINpLPA9ThL7-P9-I5NSd' }
+  }, AngularFirestoreModule, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

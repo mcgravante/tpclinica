@@ -15,7 +15,6 @@ import { Paciente } from 'src/app/clases/paciente';
 import { DisponibilidadEspecialistaService } from 'src/app/servicios/disponibilidad-especialista.service';
 import { DisponibilidadEspecialistas } from 'src/app/clases/disponibilidad-especialistas';
 import { Time } from '@angular/common';
-import { createThis } from 'typescript';
 
 
 @Component({
@@ -29,6 +28,7 @@ export class AltaTurnosComponent implements OnInit {
   especialidadSeleccionada: Especialidad;
   especialistaSeleccionado: Especialista;
   turnoSeleccionado: Date;
+  captchaResolved: boolean = false;
 
   esAdmin: boolean = false;
   pacienteNombre: string;
@@ -51,7 +51,8 @@ export class AltaTurnosComponent implements OnInit {
       especialista: ["", Validators.required],
       fecha: ["", Validators.required],
       especialidad: ["", Validators.required],
-      paciente: ["", Validators.required]
+      paciente: ["", Validators.required],
+      reCaptcha: ['', Validators.required]
     })
   }
 
@@ -205,4 +206,5 @@ export class AltaTurnosComponent implements OnInit {
       turnosSuscription.unsubscribe()
     })
   }
+
 }
