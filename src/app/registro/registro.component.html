@@ -5,26 +5,23 @@
 
   <main class="form-signin">
 
-    <div *ngIf="!isUserPanel">
+    <div class="miclase" *ngIf="!isUserPanel">
       <a rounded=true class="btn btn-lg btn-primary btn-paciente" type="submit" href="registro/paciente">
         <h1>Registrar Paciente</h1>
       </a>
-      
-      <a rounded=true class="btn btn-lg btn-primary btn-especialista" type="submit"
-      href="registro/especialista">
-        <h1>Registrar Especialista</h1>
-    </a>
-      
-    </div>
 
+      <a rounded=true class="btn btn-lg btn-primary btn-especialista" type="submit" href="registro/especialista">
+        <h1>Registrar Especialista</h1>
+      </a>
+
+    </div>
 
     <div *ngIf="isUserPanel">
       <button class="btn btn-md btn-primary " type="submit" (click)="registrarPaciente()">
         Registrar Paciente
       </button>
 
-      <button class="btn btn-md btn-primary " type="submit"
-        (click)="registrarEspecialista()">
+      <button class="btn btn-md btn-primary " type="submit" (click)="registrarEspecialista()">
         Registrar Especialista
       </button>
 
@@ -32,7 +29,7 @@
       <button class="btn btn-md btn-primary" type="submit" (click)="registrarAdministrador()">
         Registrar Administrador
       </button>
-      
+
     </div>
 
     <br>
