@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Turno } from '../clases/turno';
+import { EstadoTurno, Turno } from '../clases/turno';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,10 @@ export class TurnosService {
 
   getTurnosByEspecialista(email: string) {
     return this.firestore.collection("turnos", ref => ref.where('especialistaMail', '==', email)).snapshotChanges();
+  }
+
+  getTurnosFinalizadosByEspecialista(email: string) {
+    return this.firestore.collection("turnos", ref => ref.where('especialistaMail', '==', email).where('estado', '==', EstadoTurno.finalizado)).snapshotChanges();
   }
 
   guardarTurno(turno: Turno) {

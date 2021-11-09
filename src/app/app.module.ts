@@ -51,6 +51,9 @@ import { FiltroMixtoEspecialidadPacientePipe } from './pipes/filtro-mixto-especi
 import { ListaPacientesComponent } from './componentes/lista-pacientes/lista-pacientes.component';
 import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
 import { HorariosComponent } from './componentes/horarios/horarios.component';
+import { AltaHistoriaClinicaComponent } from './componentes/alta-historia-clinica/alta-historia-clinica.component';
+import { PacientesComponent } from './componentes/pacientes/pacientes.component';
+import { FiltroTurnoPipe } from './pipes/filtro-turno.pipe';
 
 
 
@@ -84,7 +87,10 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
     FiltroMixtoEspecialidadPacientePipe,
     ListaPacientesComponent,
     MiPerfilComponent,
-    HorariosComponent
+    HorariosComponent,
+    AltaHistoriaClinicaComponent,
+    PacientesComponent,
+    FiltroTurnoPipe,
   ],
   imports: [
     MatButtonModule,

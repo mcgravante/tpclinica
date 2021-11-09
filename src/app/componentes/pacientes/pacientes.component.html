@@ -1,0 +1,12 @@
+<p><input type="text" [(ngModel)]="filter"></p>
+
+<li class="d-inline-block" (click)="seleccionarPaciente(paciente)"
+    *ngFor="let paciente of arrayMisPacientes | filtroEspecialistas:filter">
+    <div class="fab-button btn">
+        <button mat-mini-fab class="fastAccessButton"
+            [ngStyle]="{'background-image': 'url(' + paciente.foto1Url + ')'}">
+        </button>
+        <p>{{paciente.nombre}} {{paciente.apellido}} </p>
+    </div>
+
+</li>

@@ -34,8 +34,7 @@
                 <th scope="col">Estado</th>
             </tr>
         </thead>
-        <tbody (click)="SeleccionarTurno(turno)"
-            *ngFor="let turno of arrayTurnosEspecialista | filtroMixtoEspecialidadPaciente:filter">
+        <tbody (click)="SeleccionarTurno(turno)" *ngFor="let turno of arrayTurnosEspecialista | filtroTurno:filter">
             <tr>
                 <td>{{turno.pacienteNombre}}</td>
                 <td>{{turno.especialidad}}</td>
@@ -55,8 +54,7 @@
                 <th scope="col">Estado</th>
             </tr>
         </thead>
-        <tbody (click)="SeleccionarTurno(turno)"
-            *ngFor="let turno of arrayTurnosPaciente | filtroMixtoEspecialidadEspecialista:filter">
+        <tbody (click)="SeleccionarTurno(turno)" *ngFor="let turno of arrayTurnosPaciente | filtroTurno:filter">
             <tr>
                 <td>{{turno.especialidad}}</td>
                 <td>{{turno.especialistaNombre}}</td>

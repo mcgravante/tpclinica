@@ -20,6 +20,10 @@ export class PacienteService {
     return this.firestore.collection("pacientes", ref => ref.where('mail', '==', email)).snapshotChanges();
   }
 
+  getPacientesByList(emailList: string[]) {
+    return this.firestore.collection("pacientes", ref => ref.where("mail", "in", emailList)).snapshotChanges();
+  }
+
   guardarPaciente(paciente: Paciente) {
     return this.firestore.collection("pacientes").add({
       nombre: paciente.nombre,

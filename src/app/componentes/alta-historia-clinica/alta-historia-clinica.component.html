@@ -1,0 +1,102 @@
+<!doctype html>
+
+<body class="bg-light">
+
+    <div class="container">
+        <main>
+
+            <div class="row g-5">
+                <br>
+
+                <form [formGroup]="formAltaHistoria" (ngSubmit)="guardarHistoriaClinica()">
+                    <h4 class="mb-3">Completar Historia Clínica del Paciente</h4>
+                    <div class="form-group">
+                        <div class="row g-3">
+
+                            <div class="col-sm-6">
+                                <label for="paciente">Paciente</label>
+                                <input type="label" class="form-control" formControlName="paciente" readonly
+                                    placeholder="">
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="altura">Altura</label>
+                                    <input type="number" class="form-control" formControlName="altura">
+                                    <span class="text-danger"
+                                        *ngIf="formAltaHistoria.get('altura')?.hasError('required') && formAltaHistoria.get('altura')?.touched">Debe
+                                        completar con la altura del paciente.</span>
+                                    <br>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="peso">Peso</label>
+                                    <input type="number" class="form-control" formControlName="peso">
+                                    <span class="text-danger"
+                                        *ngIf="formAltaHistoria.get('peso')?.hasError('required') && formAltaHistoria.get('peso')?.touched">Debe
+                                        completar con el peso del paciente.</span>
+                                    <br>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="temperatura">Temperatura</label>
+                                    <input type="number" class="form-control" formControlName="temperatura">
+                                    <span class="text-danger"
+                                        *ngIf="formAltaHistoria.get('temperatura')?.hasError('required') && formAltaHistoria.get('temperatura')?.touched">Debe
+                                        completar con la temperatura del paciente.</span>
+                                    <br>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="presion">Presión</label>
+                                    <input type="number" class="form-control" formControlName="presion">
+                                    <span class="text-danger"
+                                        *ngIf="formAltaHistoria.get('presion')?.hasError('required') && formAltaHistoria.get('presion')?.touched">Debe
+                                        completar con la presión del paciente.</span>
+                                    <br>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="clave1">Observación 1</label>
+                                        <input type="text" class="form-control" formControlName="clave1">
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="valor1">Valor</label>
+                                        <input type="text" class="form-control" formControlName="valor1">
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="clave2">Observación 2</label>
+                                        <input type="text" class="form-control" formControlName="clave2">
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="valor2">Valor</label>
+                                        <input type="text" class="form-control" formControlName="valor2">
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="clave3">Observación 3</label>
+                                        <input type="text" class="form-control" formControlName="clave3">
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="valor3">Valor</label>
+                                        <input type="text" class="form-control" formControlName="valor3">
+                                        <br>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <br>
+                            <br>
+                            <button class="btn btn-primary btn-md" [disabled]="formAltaHistoria.invalid"
+                                type="submit">Guardar historia clínica</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>

@@ -27,6 +27,8 @@ export class AltaTurnosComponent implements OnInit {
 
   especialidadSeleccionada: Especialidad;
   especialistaSeleccionado: Especialista;
+  pacienteSeleccionado: Paciente;
+
   turnoSeleccionado: Date;
   captchaResolved: boolean = false;
 
@@ -63,13 +65,13 @@ export class AltaTurnosComponent implements OnInit {
     }
     else if (user.tipo == 'paciente') {
       this.formAltaTurno.controls['paciente'].setValue(user.nombre + ' ' + user.apellido);
+      this.pacienteSeleccionado = user;
     }
 
   }
 
   guardarTurno() {
-    let loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
-    let pacienteMail: string = loggedUser.mail;
+    let pacienteMail: string = this.pacienteSeleccionado.mail;
     let pacienteNombre = this.formAltaTurno.controls['paciente'].value;
     let especialistaMail = this.especialistaSeleccionado.mail;
     let especialistaNombre = this.especialistaSeleccionado.nombre + ' ' + this.especialistaSeleccionado.apellido;
@@ -119,6 +121,7 @@ export class AltaTurnosComponent implements OnInit {
 
 
   cambiarPaciente(paciente: Paciente) {
+    this.pacienteSeleccionado = paciente;
     this.formAltaTurno.controls['paciente'].setValue(paciente.nombre);
   }
 

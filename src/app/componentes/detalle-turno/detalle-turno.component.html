@@ -93,6 +93,9 @@
                                 *ngIf="formFinalizoTurno.get('resenia')?.hasError('required') && formFinalizoTurno.get('resenia')?.touched">Debe
                                 escribir una reseña.</span>
                             <br>
+                            <br>
+                            <app-alta-historia-clinica [paciente]="turnoSeleccionado.pacienteMail">
+                            </app-alta-historia-clinica>
                             <button class="btn btn-primary btn-md" [disabled]="formFinalizoTurno.invalid"
                                 type="submit">Finalizar turno</button>
                         </div>

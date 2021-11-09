@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs/internal/Subject';
 import { Paciente } from 'src/app/clases/paciente';
 import { PacienteService } from 'src/app/servicios/paciente.service';
 
