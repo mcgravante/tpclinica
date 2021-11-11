@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HistoriaClinica } from 'src/app/clases/historia-clinica';
-import { Paciente } from 'src/app/clases/paciente';
 import { HistoriasClinicasService } from 'src/app/servicios/historias-clinicas.service';
 
 @Component({
@@ -43,6 +42,7 @@ export class AltaHistoriaClinicaComponent implements OnInit {
   }
 
   guardarHistoriaClinica() {
+    let especialista: any = JSON.parse(localStorage.getItem('loggedUser'));
     let pacienteMail = this.paciente;
     let altura = this.formAltaHistoria.controls['altura'].value;
     let peso = this.formAltaHistoria.controls['peso'].value;
@@ -56,7 +56,7 @@ export class AltaHistoriaClinicaComponent implements OnInit {
     let valor3 = this.formAltaHistoria.controls['valor3'].value;
     let fecha: Date = new Date();
 
-    let historiaClinica: HistoriaClinica = new HistoriaClinica(fecha, pacienteMail, altura, peso, temperatura, presion);
+    let historiaClinica: HistoriaClinica = new HistoriaClinica(fecha, pacienteMail, especialista.mail, altura, peso, temperatura, presion);
     historiaClinica.clave1 = clave1;
     historiaClinica.valor1 = valor1;
     historiaClinica.clave2 = clave2;

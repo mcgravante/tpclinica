@@ -21,7 +21,7 @@ export class ListaPacientesComponent implements OnInit {
     this.pacienteService.getPacientes().subscribe((pacientes: any) => {
       let listaPacientes: Paciente[] = [];
       for (let index = 0; index < pacientes.length; index++) {
-        const paciente = pacientes[index];
+        let paciente = pacientes[index];
         listaPacientes.push(paciente.payload.doc.data());
       }
       this.arrayPacientes = listaPacientes;

@@ -1,27 +1,25 @@
-entro como especialista en seccion pacientes
+*entro como especialista en seccion pacientes 
 
-aparecen sus pacientes con fab button
+*aparecen sus pacientes con fab button
 
-mostrar detalle sin tabla datos del turno
-dia hora y especialidad
+*mostrar detalle sin tabla datos del turno
+*dia hora y especialidad
 
-al hacer click muestra la reseña
-
-
-
-descargar excel admin desde seccion usuarios
-
-ademas, todos los usuarios en fab button redondos
-
-al seleccionar, descargar turnos de ese paciente con todos los medios y especialidades
+*al hacer click muestra la reseña
 
 
 
-para paciente, mi perfil
+*descargar excel admin desde seccion usuarios
 
-descarga pdf de las historias clinicas
+*ademas, todos los usuarios en fab button redondos
 
-además, descargar la historia clinica de un solo especialista
+al seleccionar, descargar turnos de ese paciente con todos los medicos y especialidades
+
+
+
+*para paciente, mi perfil
+*descarga pdf de las historias clinicas
+*además, descargar la historia clinica de un solo especialista
 
 
 animaciones de transicion  cambiar href por routelink

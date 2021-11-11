@@ -32,6 +32,10 @@ export class TurnosService {
     return this.firestore.collection("turnos", ref => ref.where('especialistaMail', '==', email).where('estado', '==', EstadoTurno.finalizado)).snapshotChanges();
   }
 
+  getTurnosFinalizadosByPaciente(email: string) {
+    return this.firestore.collection("turnos", ref => ref.where('pacienteMail', '==', email).where('estado', '==', EstadoTurno.finalizado)).snapshotChanges();
+  }
+
   guardarTurno(turno: Turno) {
     return this.firestore.collection("turnos").add({
       pacienteMail: turno.pacienteMail,

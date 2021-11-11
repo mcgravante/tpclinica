@@ -42,26 +42,63 @@
     <br>
     <img [src]="especialista.fotoUrl" alt="">
 </div>
+
 <div *ngIf="paciente">
-    <span>Nombre: {{paciente.nombre}}</span>
-    <br>
-    <span>Apellido: {{paciente.apellido}}</span>
-    <br>
-    <span>DNI: {{paciente.dni}}</span>
-    <br>
-    <span>edad: {{paciente.edad}}</span>
-    <br>
-    <span>Obra Social: {{paciente.obraSocial}}</span>
-    <br>
-    <span>Email: {{paciente.mail}}</span>
-    <br>
-    <span>Password: {{paciente.password}}</span>
-    <br>
-    <label>Foto Perfil 1</label>
-    <br>
-    <img [src]="paciente.foto1Url" alt="">
-    <br>
-    <label>Foto Perfil 2</label>
-    <br>
-    <img [src]="paciente.foto2Url" alt="">
+    <table id="excel-table-one" class="table table-bordered">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>DNI</th>
+            <th>edad</th>
+            <th>Obra Social</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Foto Perfil 1</th>
+            <th>Foto Perfil 2</th>
+
+        </tr>
+        <tr>
+
+            <td>{{paciente.nombre}}</td>
+            <td>{{paciente.apellido}}</td>
+            <td>{{paciente.dni}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.obraSocial}}</td>
+            <td>{{paciente.mail}}</td>
+            <td>{{paciente.password}}</td>
+            <td><img [src]="paciente.foto1Url" alt=""></td>
+            <td><img [src]="paciente.foto2Url" alt=""></td>
+
+        </tr>
+    </table>
+
+    <table *ngIf="arrayTurnosPaciente" id="excel-turnos-table-one" class="table table-bordered">
+        <tr>
+            <th>Especialidad</th>
+            <th>Especialista</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Encuesta</th>
+            <th>Calificación</th>
+            <th>Reseña</th>
+
+        </tr>
+        <tr *ngFor="let turno of arrayTurnosPaciente">
+
+            <td>{{turno.especialidad}}</td>
+            <td>{{turno.especialistaNombre}} {{turno.especialistaApellido}}</td>
+            <td>{{turno.fecha | date:"medium"}}</td>
+            <td>{{turno.estado}}</td>
+            <td>{{turno.encuesta}}</td>
+            <td>{{turno.calificacion}}</td>
+            <td>{{turno.resenia}}</td>
+
+
+        </tr>
+    </table>
+
+    <button *ngIf="user.tipo=='administrador'" class="btn btn-outline-secondary" (click)="exportExcelOnlyOne()">
+        Exportar Datos a Excel
+    </button>
+
 </div>

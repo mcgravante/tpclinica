@@ -26,25 +26,62 @@
             </div>
 
             <div class="row align-items-md-stretch">
-                <div class="col-md-6">
-                    <div class="h-100 p-5 bg-light border rounded-3">
-                        <h2>Detalle Usuario Seleccionado</h2>
-                        <app-detalle-usuario [administrador]="administrador" [paciente]="paciente"
-                            [especialista]="especialista"></app-detalle-usuario>
-                        <br>
-                        <button class="btn btn-outline-secondary" (click)="limpiar()" type="button">Limpiar</button>
-                    </div>
-                </div>
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Detalle Usuario Seleccionado</h2>
+                    <div *ngIf="tipoUsuarios=='Pacientes' && !paciente">
+                        <table id="excel-table-all" class="table table-bordered">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>DNI</th>
+                                <th>edad</th>
+                                <th>Obra Social</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                                <th>Foto Perfil 1</th>
+                                <th>Foto Perfil 2</th>
 
-                <div class="col-md-6">
-                    <div class="h-100 p-5 bg-light border rounded-3">
-                        <h2>Agregar Usuario</h2>
-                        <app-registration [isUserPanel]="true"></app-registration>
+                            </tr>
+                            <tr *ngFor="let pac of arrayPacientes">
+
+                                <td>{{pac.nombre}}</td>
+                                <td>{{pac.apellido}}</td>
+                                <td>{{pac.dni}}</td>
+                                <td>{{pac.edad}}</td>
+                                <td>{{pac.obraSocial}}</td>
+                                <td>{{pac.mail}}</td>
+                                <td>{{pac.password}}</td>
+                                <td><img [src]="pac.foto1Url" alt=""></td>
+                                <td><img [src]="pac.foto2Url" alt=""></td>
+
+                            </tr>
+                        </table>
+                        <button class="btn btn-outline-secondary" (click)="exportExcelAll()">
+                            Exportar Datos a Excel
+                        </button>
                     </div>
+                    <app-detalle-usuario [administrador]="administrador" [paciente]="paciente"
+                        [especialista]="especialista" [arrayTurnosPaciente]="arrayTurnosPaciente">
+                    </app-detalle-usuario>
+                    <br>
+                    <button class="btn btn-outline-secondary" (click)="limpiar()" type="button">Limpiar</button>
                 </div>
             </div>
 
+
+            <div class="row align-items-md-stretch">
+                <app-detalle-historia-clinica *ngIf="paciente" [pacienteSeleccionado]="paciente">
+                </app-detalle-historia-clinica>
+            </div>
+
+            <div class="row">
+                <div class="h-100 p-5 bg-light border rounded-3">
+                    <h2>Agregar Usuario</h2>
+                    <app-registration [isUserPanel]="true"></app-registration>
+                </div>
+            </div>
         </div>
+
     </main>
 
 

@@ -54,6 +54,7 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
 import { AltaHistoriaClinicaComponent } from './componentes/alta-historia-clinica/alta-historia-clinica.component';
 import { PacientesComponent } from './componentes/pacientes/pacientes.component';
 import { FiltroTurnoPipe } from './pipes/filtro-turno.pipe';
+import { DetalleHistoriaClinicaComponent } from './componentes/detalle-historia-clinica/detalle-historia-clinica.component';
 
 
 
@@ -91,6 +92,7 @@ import { FiltroTurnoPipe } from './pipes/filtro-turno.pipe';
     AltaHistoriaClinicaComponent,
     PacientesComponent,
     FiltroTurnoPipe,
+    DetalleHistoriaClinicaComponent,
   ],
   imports: [
     MatButtonModule,

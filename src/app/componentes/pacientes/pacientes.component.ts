@@ -27,7 +27,6 @@ export class PacientesComponent implements OnInit {
       let listaMailsPacientes: string[] = [];
       for (let index = 0; index < turnos.length; index++) {
         let turno = turnos[index].payload.doc.data();
-        this.miPaciente = turno.pacienteMail;
         listaMailsPacientes.push(turno.pacienteMail);
       }
       let listaMisPacientes: Paciente[] = [];

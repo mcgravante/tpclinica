@@ -3,20 +3,43 @@
 
 <body>
     <main>
-        <div class="container py-4">
-            <div class="p-5 mb-4 bg-light rounded-3">
-                <div class="container-fluid py-5">
-                    <h1 class="display-5 fw-bold">Mi perfil</h1>
-                    <app-detalle-usuario [administrador]="administrador" [paciente]="paciente"
-                        [especialista]="especialista"></app-detalle-usuario>
-                </div>
+        <div class="container">
+            <div class="row container-fluid py-5">
+                <h1 class="display-5 fw-bold">Mi perfil</h1>
+                <app-detalle-usuario [administrador]="administrador" [paciente]="paciente"
+                    [especialista]="especialista"></app-detalle-usuario>
             </div>
 
-            <div *ngIf="especialista" class="row align-items-md-stretch">
-                <!-- <div class="col-md-6"> -->
-                <app-horarios></app-horarios>
-                <!-- </div> -->
-                <!-- <div class="col-md-6">
+            <div *ngIf="paciente" class="row">
+                <app-detalle-historia-clinica [pacienteSeleccionado]="paciente"
+                    [especialistaSeleccionado]="especialistaSeleccionado"></app-detalle-historia-clinica>
+                <br>
+                <h4>Seleccionar especialista para ver las historias clínicas que cargó</h4>
+                <ul>
+                <li class="d-inline-block" (click)="seleccionarEspecialista(especialista)"
+                    *ngFor="let especialista of arrayMisEspecialistas | filtroEspecialistas:filter">
+                    <div class="fab-button btn">
+                        <button mat-mini-fab class="fastAccessButton"
+                            [ngStyle]="{'background-image': 'url(' + especialista.fotoUrl + ')'}">
+                        </button>
+                        <p>{{especialista.nombre}} {{especialista.apellido}} </p>
+                    </div>
+
+                </li>
+            </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div *ngIf="especialista" class="row align-items-md-stretch">
+            <!-- <div class="col-md-6"> -->
+            <app-horarios></app-horarios>
+            <!-- </div> -->
+            <!-- <div class="col-md-6">
                     <div class="h-100 p-5 bg-light border rounded-3">
                         <h2>Add borders</h2>
                         <p>Or, keep it light and add a border for some added definition to the boundaries of your
@@ -25,7 +48,6 @@
                         <button class="btn btn-outline-secondary" type="button">Example button</button>
                     </div>
                 </div> -->
-            </div>
         </div>
     </main>
 

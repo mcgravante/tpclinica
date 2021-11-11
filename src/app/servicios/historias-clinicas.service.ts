@@ -20,15 +20,21 @@ export class HistoriasClinicasService {
   getHistorias() {
     return this.firestore.collection("historias").snapshotChanges();
   }
-
+  getHistoriasByPacientes(emailList: string[]) {
+    return this.firestore.collection("historias", ref => ref.where("paciente", "in", emailList)).snapshotChanges();
+  }
+  getHistoriasByPacienteAndEspecialista(pacienteMail: string, especialistaMail: string) {
+    return this.firestore.collection("historias", ref => ref.where("paciente", "==", pacienteMail).where("especialista", "==", especialistaMail)).snapshotChanges();
+  }
   getHistoria(paciente: string) {
-    return this.firestore.collection("historias", ref => ref.where('paciente', '==', paciente).orderBy('fecha')).snapshotChanges();
+    return this.firestore.collection("historias", ref => ref.where('paciente', '==', paciente)).snapshotChanges();
   }
 
   guardarHistoria(historia: HistoriaClinica) {
     return this.firestore.collection("historias").add({
       fecha: historia.fecha,
       paciente: historia.paciente,
+      especialista: historia.especialista,
       altura: historia.altura,
       peso: historia.peso,
       temperatura: historia.temperatura,
@@ -40,24 +46,6 @@ export class HistoriasClinicasService {
       clave3: historia.clave3,
       valor3: historia.valor3
     });
-  }
-
-  cambiarEstadoHistoria(historia: HistoriaClinica) {
-    let doc = this.getHistoria(historia.paciente).subscribe((historias: any) => {
-      const historiaId = historias[0].payload.doc.id;
-      var historiaForUpdate = this.firestore.collection("historias").doc(historiaId);
-      historiaForUpdate.update({
-        clave1: historia.paciente,
-        valor1: historia.paciente,
-        clave2: historia.paciente,
-        valor2: historia.paciente,
-        clave3: historia.paciente,
-        valor3: historia.paciente
-      })
-        .then(() => { })
-        .catch((error) => { });
-      doc.unsubscribe()
-    })
   }
 
 }

@@ -17,8 +17,12 @@ export class EspecialistaService {
     return this.firestore.collection("especialistas").snapshotChanges();
   }
 
-  getEspecialistasByEspecialidad(especialidad:Especialidad) {
+  getEspecialistasByEspecialidad(especialidad: Especialidad) {
     return this.firestore.collection("especialistas", ref => ref.where('especialidades', 'array-contains', especialidad)).snapshotChanges();
+  }
+
+  getEspecialistasByList(emailList: string[]) {
+    return this.firestore.collection("especialistas", ref => ref.where("mail", "in", emailList)).snapshotChanges();
   }
 
   getEspecialista(email: string) {

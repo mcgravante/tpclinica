@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<!-- <div class="table-responsive"> -->
     <table *ngIf="tipoUsuarios=='Administradores'" class="table table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -41,22 +41,19 @@
             </tr>
         </tbody>
     </table>
-    <table *ngIf="tipoUsuarios=='Pacientes'" class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Edad</th>
-            </tr>
-        </thead>
-        <tbody (click)="SeleccionarPaciente(paciente)" *ngFor="let paciente of arrayPacientes">
-            <tr>
-                <td>{{paciente.nombre}}</td>
-                <td>{{paciente.apellido}}</td>
-                <td>{{paciente.dni}}</td>
-                <td>{{paciente.edad}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+
+
+    <ul *ngIf="tipoUsuarios=='Pacientes'">
+        <li class="d-inline-block" (click)="SeleccionarPaciente(paciente)" *ngFor="let paciente of arrayPacientes">
+            <div class="fab-button btn">
+                <button mat-mini-fab class="fastAccessButton"
+                    [ngStyle]="{'background-image': 'url(' + paciente.foto1Url + ')'}">
+                </button>
+                <p>{{paciente.nombre}} {{paciente.apellido}} </p>
+            </div>
+
+        </li>
+    </ul>
+
+
+<!-- </div> -->
