@@ -72,7 +72,8 @@
         </tr>
     </table>
 
-    <table *ngIf="arrayTurnosPaciente" id="excel-turnos-table-one" class="table table-bordered">
+    <table *ngIf="user.tipo!='paciente' && arrayTurnosPaciente!=[]" id="excel-turnos-table-one"
+        class="table table-bordered">
         <tr>
             <th>Especialidad</th>
             <th>Especialista</th>
@@ -87,7 +88,7 @@
 
             <td>{{turno.especialidad}}</td>
             <td>{{turno.especialistaNombre}} {{turno.especialistaApellido}}</td>
-            <td>{{turno.fecha | date:"medium"}}</td>
+            <td>{{turno.fecha | date:"yyyy/MM/dd HH:mm"}}</td>
             <td>{{turno.estado}}</td>
             <td>{{turno.encuesta}}</td>
             <td>{{turno.calificacion}}</td>

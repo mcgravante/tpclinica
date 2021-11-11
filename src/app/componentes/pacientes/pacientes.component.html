@@ -10,3 +10,8 @@
     </div>
 
 </li>
+<br>
+<div *ngIf="miPaciente">
+    <app-detalle-historia-clinica [pacienteSeleccionado]="miPaciente" [especialistaSeleccionado]="user">
+    </app-detalle-historia-clinica>
+</div>

@@ -1,84 +1,86 @@
 <!doctype html>
 <html lang="en">
 
-<body class="text-center">
+<div *ngIf="visible" [@slideInOut]>
 
-    <main class="form-signin">
-        <form>
-            <h1 class="h3 mb-3 fw-normal">¿Seguro quiere loguearse? OK...</h1>
+    <body class="text-center">
 
-            <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                    [(ngModel)]='email' name='email'>
-                <label for="floatingInput">Email</label>
+        <main class="form-signin">
+            <form>
+                <h1 class="h3 mb-3 fw-normal">¿Seguro quiere loguearse? OK...</h1>
+
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                        [(ngModel)]='email' name='email'>
+                    <label for="floatingInput">Email</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                        [(ngModel)]='password' name='password'>
+                    <label for="floatingPassword">Password</label>
+                </div>
+            </form>
+
+            <button class="btn btn-md btn-primary" type="submit" (click)="logIn()">Ingresar</button>
+            <br>
+            <br>
+            <a class="w-100 btn btn-sm btn-secondary" type="submit" href="/registro">Registrarse</a>
+
+            <div class="mat-fab-bottom-right">
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + adminFotoUrl + ')'}" (click)="cargarAdmin()">
+                    </button>
+                    <br>
+                    <h6>Administrador</h6>
+                </div>
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + espec1FotoUrl + ')'}" (click)="cargarEspecialista1()">
+                    </button>
+                    <br>
+                    <h6>Especialista1</h6>
+                </div>
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + espec2FotoUrl + ')'}" (click)="cargarEspecialista2()">
+                    </button>
+                    <br>
+                    <h6>Especialista2</h6>
+                </div>
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + pac1FotoUrl + ')'}" (click)="cargarPaciente1()">
+                    </button>
+                    <br>
+                    <h6>Paciente1</h6>
+                </div>
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + pac2FotoUrl + ')'}" (click)="cargarPaciente2()">
+                    </button>
+                    <br>
+                    <h6>Paciente2</h6>
+                </div>
+
+                <div class="fab-button">
+                    <button mat-mini-fab class="fastAccessButton"
+                        [ngStyle]="{'background-image': 'url(' + pac3FotoUrl + ')'}" (click)="cargarPaciente3()">
+                    </button>
+                    <br>
+                    <h6>Paciente3</h6>
+                </div>
+
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                    [(ngModel)]='password' name='password'>
-                <label for="floatingPassword">Password</label>
-            </div>
-        </form>
-
-        <button class="btn btn-md btn-primary" type="submit" (click)="logIn()">Ingresar</button>
-        <br>
-        <br>
-        <a class="w-100 btn btn-sm btn-secondary" type="submit" href="/registro">Registrarse</a>
-
-        <div class="mat-fab-bottom-right">
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + adminFotoUrl + ')'}" (click)="cargarAdmin()">
-                </button>
-                <br>
-                <h6>Administrador</h6>
-            </div>
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + espec1FotoUrl + ')'}" (click)="cargarEspecialista1()">
-                </button>
-                <br>
-                <h6>Especialista1</h6>
-            </div>
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + espec2FotoUrl + ')'}" (click)="cargarEspecialista2()">
-                </button>
-                <br>
-                <h6>Especialista2</h6>
-            </div>
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + pac1FotoUrl + ')'}" (click)="cargarPaciente1()">
-                </button>
-                <br>
-                <h6>Paciente1</h6>
-            </div>
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + pac2FotoUrl + ')'}" (click)="cargarPaciente2()">
-                </button>
-                <br>
-                <h6>Paciente2</h6>
-            </div>
-
-            <div class="fab-button">
-                <button mat-mini-fab class="fastAccessButton"
-                    [ngStyle]="{'background-image': 'url(' + pac3FotoUrl + ')'}" (click)="cargarPaciente3()">
-                </button>
-                <br>
-                <h6>Paciente3</h6>
-            </div>
-
-        </div>
-    </main>
+        </main>
 
 
-
-</body>
+    </body>
+</div>
 
 </html>

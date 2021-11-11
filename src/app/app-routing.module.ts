@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroModule } from './modulos/registro/registro.module';
 import { AdminAuthGuard } from './servicios/admin-auth.guard';
 import { AuthGuard } from './servicios/auth.guard';
+import { EspecAuthGuard } from './servicios/espec-auth.guard';
 
 const routes: Routes = [
   {
@@ -42,6 +43,9 @@ const routes: Routes = [
   },
   {
     path: 'seccion-usuarios', component: SeccionUsuariosComponent, canActivate: [AdminAuthGuard]
+  },
+  {
+    path: 'pacientes', component: PacientesComponent, canActivate: [EspecAuthGuard]
   }
 
 ];

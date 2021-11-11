@@ -6,24 +6,35 @@ import { NavBarComponent } from '../componentes/nav-bar/nav-bar.component';
 import { PacienteService } from '../servicios/paciente.service';
 import { AdministradorService } from '../servicios/administrador.service';
 import { EspecialistaService } from '../servicios/especialista.service';
-import { Especialista } from '../clases/especialista';
-
+import { trigger, transition, animate, style, state } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateY(-100%)' }),
+        animate('200ms ease-in', style({ transform: 'translateY(0%)' }))
+      ]),
+      transition(':leave', [
+        animate('200ms ease-in', style({ transform: 'translateY(-100%)' }))
+      ])
+    ])
+  ]
 })
 
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
-  public adminFotoUrl:string;
-public pac1FotoUrl:string;
-public pac2FotoUrl:string;
-public pac3FotoUrl:string;
-public espec1FotoUrl:string;
-public espec2FotoUrl:string;
+  public adminFotoUrl: string;
+  public pac1FotoUrl: string;
+  public pac2FotoUrl: string;
+  public pac3FotoUrl: string;
+  public espec1FotoUrl: string;
+  public espec2FotoUrl: string;
+  public visible: boolean = true;
 
   constructor(
     public administradorService: AdministradorService,
@@ -77,7 +88,7 @@ public espec2FotoUrl:string;
       espec2.unsubscribe();
     });
 
-   }
+  }
 
   logIn() {
     this.authService.SignIn(this.email, this.password)

@@ -11,10 +11,12 @@ import { TurnosService } from 'src/app/servicios/turnos.service';
 export class PacientesComponent implements OnInit {
 
   @Output() seSeleccionoPaciente: EventEmitter<any> = new EventEmitter<any>();
-  miPaciente: string;
+  miPaciente: Paciente;
   arrayMisPacientes: Paciente[] = [];
   arrayMailsPacientes: string[] = [];
   filter: string = '';
+  user: any = JSON.parse(localStorage.getItem('loggedUser'));
+
 
 
 
@@ -22,8 +24,7 @@ export class PacientesComponent implements OnInit {
   }
 
   ngOnInit() {
-    let user: any = JSON.parse(localStorage.getItem('loggedUser'));
-    this.turnosService.getTurnosFinalizadosByEspecialista(user.mail).subscribe((turnos: any) => {
+    this.turnosService.getTurnosFinalizadosByEspecialista(this.user.mail).subscribe((turnos: any) => {
       let listaMailsPacientes: string[] = [];
       for (let index = 0; index < turnos.length; index++) {
         let turno = turnos[index].payload.doc.data();
@@ -42,6 +43,7 @@ export class PacientesComponent implements OnInit {
 
   seleccionarPaciente(paciente: Paciente) {
     this.seSeleccionoPaciente.emit(paciente);
+    this.miPaciente = paciente;
   }
 
 }
