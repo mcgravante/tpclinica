@@ -2,7 +2,7 @@
 <p><input type="text" [(ngModel)]="filter"></p>
 
 <ul *ngIf="tipoUsuario=='administrador'" class="list-group mb-3">
-    <li class="list-group-item d-flex justify-content-between lh-sm" (click)="SeleccionarTurno(turno)"
+    <li appHighlight class="list-group-item d-flex justify-content-between lh-sm" (click)="SeleccionarTurno(turno)"
         *ngFor="let turno of arrayTurnosAdministrador | filtroMixtoEspecialidadEspecialista:filter">
         <b>Especialidad: </b>
         <span>{{turno.especialidad}}</span>
@@ -21,7 +21,7 @@
 </ul>
 
 <ul *ngIf="tipoUsuario=='especialista'" class="list-group mb-3">
-    <li class="list-group-item d-flex justify-content-between lh-sm" (click)="SeleccionarTurno(turno)"
+    <li appEmbiggens class="list-group-item d-flex justify-content-between lh-sm" (click)="SeleccionarTurno(turno)"
         *ngFor="let turno of arrayTurnosEspecialista | filtroTurno:filter">
         <b>Paciente: </b>
         <span>{{turno.pacienteNombre}}</span>

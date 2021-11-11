@@ -55,6 +55,9 @@ import { AltaHistoriaClinicaComponent } from './componentes/alta-historia-clinic
 import { PacientesComponent } from './componentes/pacientes/pacientes.component';
 import { FiltroTurnoPipe } from './pipes/filtro-turno.pipe';
 import { DetalleHistoriaClinicaComponent } from './componentes/detalle-historia-clinica/detalle-historia-clinica.component';
+import { HighlightDirective } from './directivas/highlight.directive';
+import { EmbiggensDirective } from './directivas/embiggens.directive';
+import { RepositionDirective } from './directivas/reposition.directive';
 
 
 
@@ -93,6 +96,9 @@ import { DetalleHistoriaClinicaComponent } from './componentes/detalle-historia-
     PacientesComponent,
     FiltroTurnoPipe,
     DetalleHistoriaClinicaComponent,
+    HighlightDirective,
+    EmbiggensDirective,
+    RepositionDirective,
   ],
   imports: [
     MatButtonModule,
