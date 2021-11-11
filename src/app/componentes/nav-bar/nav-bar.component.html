@@ -12,31 +12,31 @@
                 <div class="collapse navbar-collapse" id="navbarsExample03">
                     <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" routerLink="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="!isLogged" class="nav-link" href="login">Ingresar</a>
+                            <a *ngIf="!isLogged" class="nav-link" routerLink="login">Ingresar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="registro">Registro</a>
+                            <a class="nav-link" routerLink="registro">Registro</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="isLogged" class="nav-link" href="mi-perfil">Mi perfil</a>
+                            <a *ngIf="isLogged" class="nav-link" routerLink="mi-perfil">Mi perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esAdmin" class="nav-link" href="seccion-usuarios">Sección usuarios</a>
+                            <a *ngIf="esAdmin" class="nav-link" routerLink="seccion-usuarios">Sección usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esEspec" class="nav-link" href="pacientes">Mis pacientes</a>
+                            <a *ngIf="esEspec" class="nav-link" routerLink="pacientes">Mis pacientes</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esAdmin" class="nav-link" href="turnos">Administración de turnos</a>
+                            <a *ngIf="esAdmin" class="nav-link" routerLink="turnos">Administración de turnos</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esPac || esEspec" class="nav-link" href="mis-turnos">Mis turnos</a>
+                            <a *ngIf="esPac || esEspec" class="nav-link" routerLink="mis-turnos">Mis turnos</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esPac || esAdmin" class="nav-link" href="solicitar-turno">Solicitar nuevo
+                            <a *ngIf="esPac || esAdmin" class="nav-link" routerLink="solicitar-turno">Solicitar nuevo
                                 turno</a>
                         </li>
                         <li class="nav-item">
