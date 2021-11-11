@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<body>
+    <main>
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+            <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+
+                <div class="my-3 p-3">
+                    <h2 class="display-5">Turnos por día</h2>
+                    <p class="lead">Gráfico de barras</p>
+                </div>
+                <div id="wrapper" class="bg-dark shadow-sm mx-auto"
+                    style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <button class="btn btn-outline-secondary" (click)="bajarTurnosPorDia()">Descargar gráfico</button>
+                </div>
+            </div>
+            <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                <div class="my-3 p-3">
+                    <h2 class="display-5">Turnos por especialidad</h2>
+                    <p class="lead">Gráfico de torta</p>
+                </div>
+                <div id="wrapper" class="bg-dark shadow-sm mx-auto"
+                    style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <button class="btn btn-outline-secondary" (click)="bajarTurnosPorEspecialidad()">Descargar
+                        gráfico</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+            <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                <div class="my-3 p-3">
+                    <h2 class="display-5">Turnos finalizados por médico en un lapso de tiempo</h2>
+                    <p class="lead">Gráfico de barras</p>
+                </div>
+                <div id="wrapper" class="bg-body shadow-sm mx-auto"
+                    style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <div class="items">
+                        Fecha Inicio
+                        <br>
+                        <input type="date" [(ngModel)]="fechaInicio">
+                        <br>
+                        <br>
+                        Fecha Fin
+                        <br>
+                        <input type="date" [(ngModel)]="fechaFin">
+                        <br>
+                        <br>
+                        <button class="btn btn-outline-secondary"
+                            (click)="bajarTurnosFinalizadosPorLapsoSeleccionado()">Descargar logs</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                <div class="my-3 py-3">
+                    <h2 class="display-5">Turnos por médico en lapso de tiempo</h2>
+                    <p class="lead">Gráfico de barras</p>
+                </div>
+                <div id="wrapper" class="bg-light shadow-sm mx-auto"
+                    style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <div class="items">
+                        Fecha Inicio
+                        <br>
+                        <input type="date" [(ngModel)]="fechaInicio">
+                        <br>
+                        <br>
+                        Fecha Fin
+                        <br>
+                        <input type="date" [(ngModel)]="fechaFin">
+                        <br>
+                        <br>
+                        <button class="row btn btn-outline-secondary"
+                            (click)="bajarTurnosPorLapsoSeleccionado()">Descargar
+                            gráfico</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+            <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                <div class="my-3 py-3">
+                    <h2 class="display-5">Logs de ingreso</h2>
+                    <p class="lead">Sólo para hackers</p>
+                </div>
+                <div id="wrapper" class="bg-light shadow-sm mx-auto"
+                    style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <button class="btn btn-outline-secondary" (click)="bajarInformeLogs()">Descargar logs</button>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+</body>
+
+</html>

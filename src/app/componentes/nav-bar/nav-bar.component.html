@@ -36,8 +36,11 @@
                             <a *ngIf="esPac || esEspec" class="nav-link" routerLink="mis-turnos">Mis turnos</a>
                         </li>
                         <li class="nav-item">
-                            <a *ngIf="esPac || esAdmin" class="nav-link" routerLink="solicitar-turno">Solicitar nuevo
+                            <a *ngIf="esPac || esAdmin" class="nav-link" routerLink="solicitar-turno">Solicitar
                                 turno</a>
+                        </li>
+                        <li class="nav-item">
+                            <a *ngIf="esAdmin" class="nav-link" routerLink="informes">Informes</a>
                         </li>
                         <li class="nav-item">
                             <a *ngIf="isLogged" class="nav-link" (click)="logOut()">Salir</a>

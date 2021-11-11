@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AltaTurnosComponent } from './componentes/alta-turnos/alta-turnos.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { InformesComponent } from './componentes/informes/informes.component';
 import { MiPerfilComponent } from './componentes/mi-perfil/mi-perfil.component';
 import { MisTurnosComponent } from './componentes/mis-turnos/mis-turnos.component';
 import { PacientesComponent } from './componentes/pacientes/pacientes.component';
@@ -46,6 +47,9 @@ const routes: Routes = [
   },
   {
     path: 'pacientes', component: PacientesComponent, canActivate: [EspecAuthGuard]
+  },
+  {
+    path: 'informes', component: InformesComponent, canActivate: [AdminAuthGuard]
   }
 
 ];

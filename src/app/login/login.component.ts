@@ -7,6 +7,8 @@ import { PacienteService } from '../servicios/paciente.service';
 import { AdministradorService } from '../servicios/administrador.service';
 import { EspecialistaService } from '../servicios/especialista.service';
 import { trigger, transition, animate, style, state } from '@angular/animations';
+import { LogService } from '../servicios/log.service';
+import { Log } from '../clases/log';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +44,8 @@ export class LoginComponent implements OnInit {
     public especialistaService: EspecialistaService,
     public authService: AuthenticationService,
     public router: Router,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public logService: LogService
   ) { }
 
   ngOnInit() {
@@ -113,6 +116,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
         NavBarComponent.updateUserStatus.next(true);
         this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+        let log: Log = new Log(loggedUser.mail, loggedUser.tipo, new Date());
+        this.logService.guardarLogIngreso(log);
         this.router.navigate(['home']);
       }
       user.unsubscribe();
@@ -128,6 +133,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
           NavBarComponent.updateUserStatus.next(true);
           this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+          let log: Log = new Log(loggedUser.mail, loggedUser.tipo, new Date());
+          this.logService.guardarLogIngreso(log);
           this.router.navigate(['home']);
         } else {
           this.toastr.error('No se ha verificado el email correctamente', 'Login');
@@ -148,6 +155,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
             NavBarComponent.updateUserStatus.next(true);
             this.toastr.success('Perfecto, bienvenide ' + loggedUser.nombre, 'Login');
+            let log: Log = new Log(loggedUser.mail, loggedUser.tipo, new Date());
+            this.logService.guardarLogIngreso(log);
             this.router.navigate(['home']);
           } else {
             localStorage.removeItem('user');

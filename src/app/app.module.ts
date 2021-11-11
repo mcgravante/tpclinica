@@ -58,6 +58,7 @@ import { DetalleHistoriaClinicaComponent } from './componentes/detalle-historia-
 import { HighlightDirective } from './directivas/highlight.directive';
 import { EmbiggensDirective } from './directivas/embiggens.directive';
 import { RepositionDirective } from './directivas/reposition.directive';
+import { InformesComponent } from './componentes/informes/informes.component';
 
 
 
@@ -99,6 +100,7 @@ import { RepositionDirective } from './directivas/reposition.directive';
     HighlightDirective,
     EmbiggensDirective,
     RepositionDirective,
+    InformesComponent,
   ],
   imports: [
     MatButtonModule,
