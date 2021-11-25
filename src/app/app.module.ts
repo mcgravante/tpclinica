@@ -60,6 +60,9 @@ import { EmbiggensDirective } from './directivas/embiggens.directive';
 import { RepositionDirective } from './directivas/reposition.directive';
 import { InformesComponent } from './componentes/informes/informes.component';
 
+import { HighchartsChartModule } from 'highcharts-angular';
+
+
 
 
 @NgModule({
@@ -118,7 +121,8 @@ import { InformesComponent } from './componentes/informes/informes.component';
     AngularFireStorageModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    HighchartsChartModule
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,
